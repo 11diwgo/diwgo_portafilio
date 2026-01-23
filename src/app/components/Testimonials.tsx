@@ -24,27 +24,27 @@ function TestimonialCard({ quote, author, role, server }: TestimonialProps) {
   );
 }
 
-export function Testimonials() {
-  const testimonials: TestimonialProps[] = [
-    {
-      quote: "Uno de los gestores de staff más dedicados y profesionales con los que he trabajado. Su capacidad para construir y mantener un equipo cohesionado es excepcional. Los plugins que desarrolló siguen siendo fundamentales para nuestro servidor.",
-      author: "Alex Chen",
-      role: "Propietario del Servidor",
-      server: "Red Estilo Hypixel"
-    },
-    {
-      quote: "Transformaron nuestro equipo de moderación de desorganizado a una máquina bien aceitada. La satisfacción de los jugadores mejoró dramáticamente bajo su liderazgo. Los bots de Discord que programó nos ahorraron cientos de horas.",
-      author: "Sarah Martínez",
-      role: "Co-Propietaria",
-      server: "Servidor Survival Towny"
-    },
-    {
-      quote: "Los programas de capacitación que desarrollaron todavía se usan hoy en día. Su documentación y procedimientos establecieron el estándar para toda nuestra red. Un profesional completo tanto en gestión como en desarrollo.",
-      author: "James Wilson",
-      role: "Desarrollador Principal",
-      server: "Servidor Creativo de Construcción"
-    }
-  ];
+//export function Testimonials() {
+  //const testimonials: TestimonialProps[] = [
+    //{
+      //quote: "Uno de los gestores de staff más dedicados y profesionales con los que he trabajado. Su capacidad para construir y mantener un equipo cohesionado es excepcional. Los plugins que desarrolló siguen siendo fundamentales para nuestro servidor.",
+      //author: "Alex Chen",
+      //role: "Propietario del Servidor",
+      //server: "Red Estilo Hypixel"
+    //},
+    //{
+      //quote: "Transformaron nuestro equipo de moderación de desorganizado a una máquina bien aceitada. La satisfacción de los jugadores mejoró dramáticamente bajo su liderazgo. Los bots de Discord que programó nos ahorraron cientos de horas.",
+      //author: "Sarah Martínez",
+      //role: "Co-Propietaria",
+      //server: "Servidor Survival Towny"
+    //},
+    //{
+      //quote: "Los programas de capacitación que desarrollaron todavía se usan hoy en día. Su documentación y procedimientos establecieron el estándar para toda nuestra red. Un profesional completo tanto en gestión como en desarrollo.",
+      //author: "James Wilson",
+      //role: "Desarrollador Principal",
+      //server: "Servidor Creativo de Construcción"
+    //}
+  //];
 
   return (
     <section className="py-20 bg-stone-950">
