@@ -1,8 +1,9 @@
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
-import spyglassIcon from "figma:asset/b7fb90f2303123d44958455becdcf5cda1caf0c5.png";
-import anvilIcon from "figma:asset/42d10c139002c71cfb04a923cda10cfeabf171af.png";
-import gearIcon from "figma:asset/e62dbdc7a38a987a1c7cf57e0cdc9922da2fa166.png";
+// CORRECCIÓN: Importaciones apuntando a tu carpeta local, no a Figma
+import spyglassIcon from "@/assets/spyglass.png";
+import anvilIcon from "@/assets/anvil.png";
+import gearIcon from "@/assets/gear.png";
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -26,14 +27,29 @@ export function Hero() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Floating Minecraft icons */}
           <div className="flex justify-center gap-8 mb-8">
-            <div className="animate-bounce" style={{ animationDelay: '0s', imageRendering: 'pixelated' }}>
-              <img src={spyglassIcon} alt="Spyglass" className="w-12 h-12" style={{ imageRendering: 'pixelated' }} />
+            <div className="animate-bounce" style={{ animationDelay: '0s' }}>
+              <img 
+                src={spyglassIcon} 
+                alt="Spyglass" 
+                className="w-12 h-12" 
+                style={{ imageRendering: 'pixelated' }} 
+              />
             </div>
-            <div className="animate-bounce" style={{ animationDelay: '0.2s', imageRendering: 'pixelated' }}>
-              <img src={anvilIcon} alt="Anvil" className="w-12 h-12" style={{ imageRendering: 'pixelated' }} />
+            <div className="animate-bounce" style={{ animationDelay: '0.2s' }}>
+              <img 
+                src={anvilIcon} 
+                alt="Anvil" 
+                className="w-12 h-12" 
+                style={{ imageRendering: 'pixelated' }} 
+              />
             </div>
-            <div className="animate-bounce" style={{ animationDelay: '0.4s', imageRendering: 'pixelated' }}>
-              <img src={gearIcon} alt="Gear" className="w-12 h-12" style={{ imageRendering: 'pixelated' }} />
+            <div className="animate-bounce" style={{ animationDelay: '0.4s' }}>
+              <img 
+                src={gearIcon} 
+                alt="Gear" 
+                className="w-12 h-12" 
+                style={{ imageRendering: 'pixelated' }} 
+              />
             </div>
           </div>
 
