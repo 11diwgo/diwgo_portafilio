@@ -58,9 +58,9 @@ export function Hero() {
           </Badge>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
-            Construyendo Mundos y
+             Gestión de servidores
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-300">
-              Gestionando Comunidades
+              de Minecraft
             </span>
           </h1>
 
