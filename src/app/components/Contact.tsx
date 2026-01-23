@@ -2,14 +2,12 @@
 
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
-import { Mail, MessageSquare, ExternalLink } from "lucide-react";
+import { Mail, MessageSquare, User } from "lucide-react"; // Importamos User para NameMC
 
 export function Contact() {
-  // CONFIGURACIÓN PERSONALIZADA
   const links = {
-    // Como no quieres dar el correo, esto abrirá un aviso o puedes dejarlo para después
     discord: "https://discord.com/users/_diwgo_", 
-    namemc: "https://es.namemc.com/profile/_diwgo_.1" // Tu perfil de NameMC
+    namemc: "https://es.namemc.com/profile/diwgo_.1"
   };
 
   const openLink = (url: string) => {
@@ -22,10 +20,10 @@ export function Contact() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              ¿Hablamos?
+              Ponte en Contacto
             </h2>
             <p className="text-xl text-gray-400">
-              ¿Tienes un proyecto en mente o necesitas un staff experimentado?
+              ¿Necesitas ayuda con tu servidor de Minecraft o Discord?
             </p>
           </div>
 
@@ -36,59 +34,51 @@ export function Contact() {
                   Construyamos Algo Increíble Juntos
                 </h3>
                 <p className="text-gray-300">
-                  Actualmente estoy priorizando el contacto vía **Discord**. 
-                  Si tienes una propuesta para un servidor de Minecraft o una comunidad, 
-                  no dudes en agregarme.
+                  Siempre estoy interesado en nuevas oportunidades para ayudar a crecer y gestionar comunidades de Minecraft. 
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6 mb-8">
-                {/* Email - Deshabilitado visualmente o como informativo */}
-                <div className="flex items-center gap-4 p-4 bg-black/20 rounded-lg border border-white/5 opacity-60">
+                <div className="flex items-center gap-4 p-4 bg-black/30 rounded-lg border border-white/5 opacity-50">
                   <Mail className="w-6 h-6 text-gray-500" />
                   <div>
                     <div className="text-sm text-gray-400">Correo</div>
-                    <div className="text-white font-semibold">Privado / Por DM</div>
+                    <div className="text-white font-semibold">Próximamente</div>
                   </div>
                 </div>
 
-                {/* Discord - El principal */}
-                <div className="flex items-center gap-4 p-4 bg-emerald-500/10 rounded-lg border border-emerald-500/30">
-                  <MessageSquare className="w-6 h-6 text-emerald-400" />
+                <div className="flex items-center gap-4 p-4 bg-black/30 rounded-lg border border-green-500/30">
+                  <MessageSquare className="w-6 h-6 text-green-400" />
                   <div>
-                    <div className="text-sm text-gray-400">Discord User</div>
+                    <div className="text-sm text-gray-400">Discord</div>
                     <div className="text-white font-semibold">_diwgo_</div>
                   </div>
                 </div>
               </div>
 
-              {/* BOTONES PRINCIPALES */}
-              <div className="flex flex-wrap gap-4 justify-center">
+              {/* BOTÓN PRINCIPAL */}
+              <div className="flex justify-center">
                 <Button 
                   size="lg" 
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-8"
+                  className="bg-emerald-600 hover:bg-emerald-700 w-full md:w-auto px-12"
                   onClick={() => openLink(links.discord)}
                 >
                   <MessageSquare className="w-4 h-4 mr-2" />
-                  Contactar en Discord
-                </Button>
-                
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-blue-400 text-blue-300 hover:bg-blue-950"
-                  onClick={() => openLink(links.namemc)}
-                >
-                  {/* Usamos un icono de enlace externo para NameMC */}
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Ver Skin (NameMC)
+                  Contactar por Discord
                 </Button>
               </div>
 
-              <div className="text-center mt-8 pt-8 border-t border-stone-800">
-                <p className="text-sm text-gray-500 italic">
-                  "La mejor forma de gestionar una comunidad es siendo parte de ella."
-                </p>
+              {/* ICONO PEQUEÑO ABAJO (NAMEMC) */}
+              <div className="flex justify-center gap-4 mt-8 pt-8 border-t border-stone-700">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  title="Ver perfil NameMC"
+                  className="text-gray-400 hover:text-emerald-400 hover:bg-emerald-500/10"
+                  onClick={() => openLink(links.namemc)}
+                >
+                  <User className="w-6 h-6" /> 
+                </Button>
               </div>
             </CardContent>
           </Card>
