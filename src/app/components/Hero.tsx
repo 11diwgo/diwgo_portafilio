@@ -2,6 +2,7 @@
 
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
+import { Eye } from "lucide-react"; // Importamos el icono del ojo
 import spyglassIcon from "@/assets/spyglass.png";
 import anvilIcon from "@/assets/anvil.png";
 import gearIcon from "@/assets/gear.png";
@@ -16,6 +17,15 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-950 via-green-900 to-stone-900">
+      
+      {/* Contador de Visitas - Arriba a la izquierda */}
+      <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-500/30 shadow-lg shadow-emerald-900/20">
+        <Eye className="w-4 h-4 text-emerald-400" />
+        <span className="text-emerald-100 text-sm font-medium">
+          1,248 personas visitaron la página
+        </span>
+      </div>
+
       {/* Grid de fondo estilo píxel */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -67,8 +77,8 @@ export function Hero() {
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-Modero y organizo servidores y comunidades de manera eficiente.
-Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
+            Modero y organizo servidores y comunidades de manera eficiente.
+            Configuro plugins y gestiono el entorno para un funcionamiento sencillo y eficaz.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center">
