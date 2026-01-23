@@ -67,8 +67,8 @@ export function Hero() {
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Ayudo a moderar comunidades dentro del juego y a que el servidor funcione correctamente. 
-            Me encargo de la gestión de usuarios y de configurar plugins para que todo esté en orden.
+Modero y organizo servidores y comunidades de manera eficiente.
+Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center">
