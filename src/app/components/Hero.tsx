@@ -65,8 +65,8 @@ export function Hero() {
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Experiencia en moderación, desarrollo de servidores Minecraft, gestión de bots de Discord 
-            y liderazgo de equipos. Especializado en crear experiencias únicas para comunidades.
+Apoyo en la gestión de comunidades y la administración de servidores de Minecraft, optimizando su funcionamiento y experiencia para los jugadores.
+Me encargo de moderar, configurar plugins, organizar Discord y asegurar que todo funcione de forma fluida y sin complicaciones. Siempre busco soluciones prácticas y mantener el servidor activo, seguro y organizado.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center">
