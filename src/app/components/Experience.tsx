@@ -118,7 +118,7 @@ export function Experience() {
         "Moderación activa in-game y control del cumplimiento de normas.",
         "Resolución de tickets de soporte técnico y dudas de jugadores.",
         "Soporte especializado para la plataforma Bedrock.",
-        "Manejo de herramientas de moderación y Scoreboard administrativa."
+        "Manejo de herramientas de moderación."
       ],
       tags: ["Moderación", "Bedrock", "Soporte", "Tickets"],
     },
@@ -130,7 +130,7 @@ export function Experience() {
       description: "Responsable de la gestión del equipo de Staff y la configuración técnica del entorno Survival.",
       achievements: [
         "Desarrollo y formación del equipo de Staff del servidor.",
-        "Configuración y optimización de plugins para el Survival.",
+        "Configuración de plugins para el Survival.",
         "Atención personalizada a través de sistema de tickets.",
         "Manejo de la economía y equilibrio de la modalidad."
       ],
