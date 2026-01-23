@@ -52,7 +52,7 @@ function ExperienceItem({ server, role, period, description, achievements, tags,
               <CardTitle className="text-2xl text-white">{server}</CardTitle>
               {isPromotion && (
                 <Badge variant="outline" className="text-emerald-400 border-emerald-400/50 flex gap-1 items-center">
-                  <TrendingUp className="w-3 h-3" /> Ascenso
+                  <TrendingUp className="w-3 h-3" /> Actualidad
                 </Badge>
               )}
             </div>
