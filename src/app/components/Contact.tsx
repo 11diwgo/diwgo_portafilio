@@ -9,7 +9,7 @@ import nameMCLogo from "@/assets/namemc-logo.png";
 export function Contact() {
   const links = {
     discord: "https://discord.com/users/_diwgo_", 
-    namemc: "https://es.namemc.com/profile/_diwgo_.1"
+    namemc: "hhttps://es.namemc.com/profile/diwgo_.1"
   };
 
   const openLink = (url: string) => {
@@ -65,7 +65,7 @@ export function Contact() {
                   onClick={() => openLink(links.discord)}
                 >
                   <MessageSquare className="w-4 h-4 mr-2" />
-                  Contactar por Discord
+                  Contactar vía Discord
                 </Button>
               </div>
 
