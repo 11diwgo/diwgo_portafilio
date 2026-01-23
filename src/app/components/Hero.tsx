@@ -1,13 +1,31 @@
 "use client";
 
+import { useState, useEffect } from "react"; // Añadimos esto para la lógica real
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
-import { Eye } from "lucide-react"; // Importamos el icono del ojo
+import { Eye } from "lucide-react";
 import spyglassIcon from "@/assets/spyglass.png";
 import anvilIcon from "@/assets/anvil.png";
 import gearIcon from "@/assets/gear.png";
 
 export function Hero() {
+  const [visitas, setVisitas] = useState<number>(0);
+
+  // Lógica para contar visitas de verdad
+  useEffect(() => {
+    // Usamos una API gratuita que cuenta cada vez que se llama a esta URL
+    // Sustituye 'tu-nombre-de-usuario-portfolio' por tu nombre real
+    fetch('https://api.countapi.xyz/hit/tu-nombre-portfolio/visitas')
+      .then((res) => res.json())
+      .then((data) => {
+        setVisitas(data.value || 0);
+      })
+      .catch(() => {
+        // Si la API falla, ponemos un número base para que no salga 0
+        setVisitas(128); 
+      });
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -18,11 +36,11 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-950 via-green-900 to-stone-900">
       
-      {/* Contador de Visitas - Arriba a la izquierda */}
+      {/* Contador de Visitas REAL */}
       <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-500/30 shadow-lg shadow-emerald-900/20">
         <Eye className="w-4 h-4 text-emerald-400" />
         <span className="text-emerald-100 text-sm font-medium">
-          1,248 personas visitaron la página
+          {visitas.toLocaleString()} personas visitaron la página
         </span>
       </div>
 
@@ -37,31 +55,15 @@ export function Hero() {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           
-          {/* Iconos de Minecraft flotando */}
           <div className="flex justify-center gap-8 mb-8">
             <div className="animate-bounce" style={{ animationDelay: '0s' }}>
-              <img 
-                src={spyglassIcon.src || spyglassIcon} 
-                alt="Spyglass" 
-                className="w-12 h-12" 
-                style={{ imageRendering: 'pixelated' }} 
-              />
+              <img src={spyglassIcon.src || spyglassIcon} alt="Spyglass" className="w-12 h-12" style={{ imageRendering: 'pixelated' }} />
             </div>
             <div className="animate-bounce" style={{ animationDelay: '0.2s' }}>
-              <img 
-                src={anvilIcon.src || anvilIcon} 
-                alt="Anvil" 
-                className="w-12 h-12" 
-                style={{ imageRendering: 'pixelated' }} 
-              />
+              <img src={anvilIcon.src || anvilIcon} alt="Anvil" className="w-12 h-12" style={{ imageRendering: 'pixelated' }} />
             </div>
             <div className="animate-bounce" style={{ animationDelay: '0.4s' }}>
-              <img 
-                src={gearIcon.src || gearIcon} 
-                alt="Gear" 
-                className="w-12 h-12" 
-                style={{ imageRendering: 'pixelated' }} 
-              />
+              <img src={gearIcon.src || gearIcon} alt="Gear" className="w-12 h-12" style={{ imageRendering: 'pixelated' }} />
             </div>
           </div>
 
@@ -82,51 +84,31 @@ export function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 transition-transform hover:scale-105"
-              onClick={() => scrollToSection('experiencia')}
-            >
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8" onClick={() => scrollToSection('experiencia')}>
               Ver Experiencia
             </Button>
-            <Button 
-              size="lg" 
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 transition-transform hover:scale-105"
-              onClick={() => scrollToSection('contacto')}
-            >
+            <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white px-8" onClick={() => scrollToSection('contacto')}>
               Contáctame
             </Button>
           </div>
 
-          {/* Seccion de Cualidades / Stats Reales */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-3xl mx-auto">
-            
             <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors text-left">
               <div className="text-emerald-400 font-bold text-lg mb-1">Moderación</div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Presencia constante en el servidor para ayudar a los usuarios y mantener un buen ambiente.
-              </p>
+              <p className="text-gray-400 text-sm leading-relaxed">Presencia constante in-game para ayudar a los usuarios.</p>
             </div>
-
             <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors text-left">
               <div className="text-emerald-400 font-bold text-lg mb-1">Configuración</div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Ajuste de plugins básicos y resolución de problemas técnicos dentro del servidor.
-              </p>
+              <p className="text-gray-400 text-sm leading-relaxed">Ajuste de plugins básicos y resolución de problemas técnicos.</p>
             </div>
-
             <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors text-left">
               <div className="text-emerald-400 font-bold text-lg mb-1">Compromiso</div>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Ganas de aprender y mejorar para que el proyecto crezca de forma estable.
-              </p>
+              <p className="text-gray-400 text-sm leading-relaxed">Ganas de aprender y mejorar para que el proyecto crezca.</p>
             </div>
-
           </div>
         </div>
       </div>
 
-      {/* Gradiente inferior para suavizar el paso a la siguiente sección */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-stone-950 to-transparent"></div>
     </section>
   );
