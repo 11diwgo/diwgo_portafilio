@@ -2,12 +2,14 @@
 
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
-import { Mail, MessageSquare, User } from "lucide-react"; // Importamos User para NameMC
+import { Mail, MessageSquare } from "lucide-react";
+// Importamos tu imagen personalizada
+import nameMCLogo from "@/assets/namemc-logo.png";
 
 export function Contact() {
   const links = {
     discord: "https://discord.com/users/_diwgo_", 
-    namemc: "https://es.namemc.com/profile/diwgo_.1"
+    namemc: "https://es.namemc.com/profile/_diwgo_.1"
   };
 
   const openLink = (url: string) => {
@@ -23,7 +25,7 @@ export function Contact() {
               Ponte en Contacto
             </h2>
             <p className="text-xl text-gray-400">
-              ¿Necesitas ayuda con tu servidor de Minecraft o Discord?
+              ¿Necesitas ayuda con tu servidor de Minecraft?
             </p>
           </div>
 
@@ -31,7 +33,7 @@ export function Contact() {
             <CardContent className="p-8 md:p-12">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-white mb-4">
-                  Construyamos Algo Increíble Juntos
+                  Construyamos algo increíble juntos
                 </h3>
                 <p className="text-gray-300">
                   Siempre estoy interesado en nuevas oportunidades para ayudar a crecer y gestionar comunidades de Minecraft. 
@@ -56,11 +58,10 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* BOTÓN PRINCIPAL */}
               <div className="flex justify-center">
                 <Button 
                   size="lg" 
-                  className="bg-emerald-600 hover:bg-emerald-700 w-full md:w-auto px-12"
+                  className="bg-emerald-600 hover:bg-emerald-700 w-full md:w-auto px-12 transition-all hover:scale-105"
                   onClick={() => openLink(links.discord)}
                 >
                   <MessageSquare className="w-4 h-4 mr-2" />
@@ -68,17 +69,20 @@ export function Contact() {
                 </Button>
               </div>
 
-              {/* ICONO PEQUEÑO ABAJO (NAMEMC) */}
+              {/* ICONO DE NAMEMC PEQUEÑO ABAJO */}
               <div className="flex justify-center gap-4 mt-8 pt-8 border-t border-stone-700">
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
+                <button 
                   title="Ver perfil NameMC"
-                  className="text-gray-400 hover:text-emerald-400 hover:bg-emerald-500/10"
+                  className="group flex items-center justify-center p-2 rounded-md hover:bg-emerald-500/10 transition-colors"
                   onClick={() => openLink(links.namemc)}
                 >
-                  <User className="w-6 h-6" /> 
-                </Button>
+                  <img 
+                    src={nameMCLogo.src} 
+                    alt="NameMC" 
+                    className="w-6 h-6 invert opacity-50 group-hover:opacity-100 transition-opacity"
+                    style={{ imageRendering: 'pixelated' }}
+                  />
+                </button>
               </div>
             </CardContent>
           </Card>
