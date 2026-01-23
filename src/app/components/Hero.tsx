@@ -80,7 +80,7 @@ Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-green-500 text-green-300 hover:bg-green-950"
+              className="bg-emerald-600 hover:bg-emerald-700"
               onClick={() => scrollToSection('contacto')}
             >
               Contáctame
