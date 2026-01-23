@@ -65,8 +65,8 @@ export function Hero() {
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-Apoyo en la gestión de comunidades y la administración de servidores de Minecraft, optimizando su funcionamiento y experiencia para los jugadores.
-Me encargo de moderar, configurar plugins, organizar Discord y asegurar que todo funcione de forma fluida y sin complicaciones. Siempre busco soluciones prácticas y mantener el servidor activo, seguro y organizado.
+Modero y organizo servidores/comunidades de manera eficiente.
+Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center">
