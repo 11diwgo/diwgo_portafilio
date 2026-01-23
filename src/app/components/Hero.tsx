@@ -71,19 +71,19 @@ export function Hero() {
           </div>
 
           <Badge className="mb-6 bg-emerald-600/20 text-emerald-300 border-emerald-500/50">
-            Staff de Minecraft & Soporte Técnico
+            Gestión & Desarrollo Discord/Minecraft
           </Badge>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
-             Apoyo en servidores
+             Gestión de servidores
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-300">
               de Minecraft
             </span>
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Modero y organizo comunidades de manera eficiente. 
-            Me encargo de que el servidor y los plugins funcionen como deben.
+Modero y organizo servidores y comunidades de manera eficiente.
+Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center">
