@@ -93,7 +93,7 @@ export function Experience() {
   const experiences: ExperienceItemProps[] = [
     {
       server: "VaperMC Network",
-      role: "Manager (Ascenso de Admin)",
+      role: "Manager",
       period: "Diciembre 2025 - Actualidad",
       isPromotion: true,
       rankImage: vaperLogo,
@@ -102,16 +102,15 @@ export function Experience() {
       achievements: [
         "Gestión integral del equipo de Staff y coordinación interna.",
         "Desarrollo y testeo de nuevas modalidades para la Network.",
-        "Atención de tickets de soporte y soporte directo en el servidor.",
         "Supervisión de la moderación general desde un rango superior."
       ],
       tags: ["Manager", "Staff Development", "Admin", "Network"],
     },
     {
       server: "NauticMC (Bedrock)",
-      role: "Moderador (Ascenso de Trial Mod)",
-      period: "Pasado",
-      isPromotion: true,
+      role: "Moderador",
+      period: " Julio 2025 — Diciembre 2025",
+      isPromotion: false,
       rankImage: nauticLogo,
       bannerImage: nauticBanner,
       description: "Inicié como Trial Mod en la comunidad de Bedrock. Ascendí a Moderador tras demostrar eficacia en la resolución de conflictos y atención al usuario.",
@@ -126,7 +125,7 @@ export function Experience() {
     {
       server: "FluxMC",
       role: "Manager",
-      period: "Pasado",
+      period: "Diciembre 2025 - Diciembre 2025",
       rankImage: fluxLogo,
       description: "Responsable de la gestión del equipo de Staff y la configuración técnica del entorno Survival.",
       achievements: [
@@ -144,7 +143,7 @@ export function Experience() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 italic">Trayectoria Staff</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 italic">Mi experiencia</h2>
             <p className="text-gray-400">Servidores donde he dejado mi marca bloque a bloque.</p>
           </div>
           <div className="grid gap-12">
