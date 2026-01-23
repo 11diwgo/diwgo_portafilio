@@ -2,26 +2,53 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
-import { Calendar, MapPin, TrendingUp } from "lucide-react";
+import { Calendar, TrendingUp } from "lucide-react";
+
+// NOTA: Asegúrate de tener estas imágenes en tu carpeta @/assets/
+import vaperLogo from "@/assets/vaper-logo.jpg";
+import vaperBanner from "@/assets/vaper-spawn.jpg";
+import nauticLogo from "@/assets/nautic-logo.jpg";
+import nauticBanner from "@/assets/nautic-scoreboard.jpg";
+import fluxLogo from "@/assets/flux-logo.jpg";
 
 interface ExperienceItemProps {
   server: string;
   role: string;
   period: string;
-  location: string;
   description: string;
   achievements: string[];
   tags: string[];
   isPromotion?: boolean;
+  rankImage?: any;
+  bannerImage?: any;
 }
 
-function ExperienceItem({ server, role, period, location, description, achievements, tags, isPromotion }: ExperienceItemProps) {
+function ExperienceItem({ server, role, period, description, achievements, tags, isPromotion, rankImage, bannerImage }: ExperienceItemProps) {
   return (
-    <Card className="bg-stone-900/50 border-stone-700 hover:border-emerald-500/50 transition-all duration-300">
+    <Card className="bg-stone-900/50 border-stone-700 hover:border-emerald-500/50 transition-all duration-300 overflow-hidden">
+      {/* Banner Principal del Servidor */}
+      {bannerImage && (
+        <div className="w-full h-48 md:h-64 overflow-hidden border-b border-stone-700">
+          <img 
+            src={bannerImage.src || bannerImage} 
+            alt={`${server} screenshot`} 
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+      )}
+
       <CardHeader>
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div className="flex items-start gap-4">
+          {/* Logo del Servidor */}
+          {rankImage && (
+            <img 
+              src={rankImage.src || rankImage} 
+              alt={server} 
+              className="w-16 h-16 rounded-lg border border-emerald-500/30 object-cover"
+            />
+          )}
           <div className="flex-1">
-            <div className="flex items-center gap-3 mb-2">
+            <div className="flex items-center gap-3 flex-wrap">
               <CardTitle className="text-2xl text-white">{server}</CardTitle>
               {isPromotion && (
                 <Badge variant="outline" className="text-emerald-400 border-emerald-400/50 flex gap-1 items-center">
@@ -30,30 +57,29 @@ function ExperienceItem({ server, role, period, location, description, achieveme
               )}
             </div>
             <CardDescription className="text-emerald-400 text-lg font-semibold">{role}</CardDescription>
-          </div>
-          <div className="flex flex-col gap-2 text-sm text-gray-400">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
               <Calendar className="w-4 h-4" />
               <span>{period}</span>
             </div>
           </div>
         </div>
       </CardHeader>
+
       <CardContent className="space-y-4">
         <p className="text-gray-300">{description}</p>
         
-        <div>
-          <h4 className="font-semibold text-white mb-2 italic text-sm opacity-80 underline decoration-emerald-500/50">Funciones principales:</h4>
-          <ul className="list-disc list-inside space-y-1 text-gray-300">
+        <div className="bg-black/20 p-4 rounded-lg border border-white/5">
+          <h4 className="font-semibold text-white mb-2 text-sm uppercase tracking-wider text-emerald-500/80">Funciones y Logros:</h4>
+          <ul className="list-disc list-inside space-y-1 text-gray-300 text-sm">
             {achievements.map((achievement, index) => (
               <li key={index}>{achievement}</li>
             ))}
           </ul>
         </div>
 
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-wrap gap-2">
           {tags.map((tag, index) => (
-            <Badge key={index} variant="secondary" className="bg-emerald-900/30 text-emerald-300 border-emerald-700/50">
+            <Badge key={index} variant="secondary" className="bg-emerald-900/20 text-emerald-300 border-emerald-700/30 text-[10px]">
               {tag}
             </Badge>
           ))}
@@ -67,31 +93,33 @@ export function Experience() {
   const experiences: ExperienceItemProps[] = [
     {
       server: "VaperMC Network",
-      role: "Manager (Ascenso desde Admin)",
-      period: "Actualidad",
-      location: "Network",
+      role: "Manager (Ascenso de Admin)",
+      period: "Diciembre 2025 - Actualidad",
       isPromotion: true,
-      description: "Entré como Administrador supervisando la moderación general. Tras demostrar resultados, ascendí a Manager para liderar el desarrollo del Staff y nuevas modalidades.",
+      rankImage: vaperLogo,
+      bannerImage: vaperBanner,
+      description: "Entré como Administrador centrado en la moderación técnica. Mi buen desempeño me permitió ascender a Manager, donde ahora gestiono el equipo y el desarrollo de modalidades.",
       achievements: [
-        "Supervisión y gestión del equipo de Staff desde una perspectiva global.",
-        "Desarrollo y planificación de nuevas modalidades de juego.",
-        "Atención de tickets complejos y resolución de conflictos.",
-        "Manejo de funciones administrativas avanzadas del servidor."
+        "Gestión integral del equipo de Staff y coordinación interna.",
+        "Desarrollo y testeo de nuevas modalidades para la Network.",
+        "Atención de tickets de soporte y soporte directo en el servidor.",
+        "Supervisión de la moderación general desde un rango superior."
       ],
-      tags: ["Gestión Staff", "Administración", "Nuevas Modalidades", "Tickets"],
+      tags: ["Manager", "Staff Development", "Admin", "Network"],
     },
     {
       server: "NauticMC (Bedrock)",
-      role: "Moderador (Ascenso desde Trial Mod)",
+      role: "Moderador (Ascenso de Trial Mod)",
       period: "Pasado",
-      location: "Bedrock Edition",
       isPromotion: true,
-      description: "Inicié mi etapa como Trial Mod enfocado en la moderación in-game. Gracias a mi desempeño constante, fui promocionado al rango de Moderador.",
+      rankImage: nauticLogo,
+      bannerImage: nauticBanner,
+      description: "Inicié como Trial Mod en la comunidad de Bedrock. Ascendí a Moderador tras demostrar eficacia en la resolución de conflictos y atención al usuario.",
       achievements: [
-        "Moderación activa dentro del servidor para mantener un buen ambiente.",
-        "Gestión y resolución de tickets de soporte de los usuarios.",
-        "Soporte directo a la comunidad Bedrock.",
-        "Vigilancia y cumplimiento de las normas del servidor."
+        "Moderación activa in-game y control del cumplimiento de normas.",
+        "Resolución de tickets de soporte técnico y dudas de jugadores.",
+        "Soporte especializado para la plataforma Bedrock.",
+        "Manejo de herramientas de moderación y Scoreboard administrativa."
       ],
       tags: ["Moderación", "Bedrock", "Soporte", "Tickets"],
     },
@@ -99,15 +127,15 @@ export function Experience() {
       server: "FluxMC",
       role: "Manager",
       period: "Pasado",
-      location: "Survival",
-      description: "Encargado de la gestión organizativa del servidor Survival, asegurando el correcto funcionamiento del equipo y del juego.",
+      rankImage: fluxLogo,
+      description: "Responsable de la gestión del equipo de Staff y la configuración técnica del entorno Survival.",
       achievements: [
-        "Liderazgo y desarrollo del equipo de Staff.",
-        "Configuración de plugins internos para el servidor Survival.",
-        "Manejo de la comunidad y atención al usuario (Tickets).",
-        "Optimización de la experiencia de juego in-game."
+        "Desarrollo y formación del equipo de Staff del servidor.",
+        "Configuración y optimización de plugins para el Survival.",
+        "Atención personalizada a través de sistema de tickets.",
+        "Manejo de la economía y equilibrio de la modalidad."
       ],
-      tags: ["Manager", "Plugins", "Staff Development", "Survival"],
+      tags: ["Manager", "Survival", "Plugins", "Staff"],
     }
   ];
 
@@ -115,16 +143,11 @@ export function Experience() {
     <section id="experiencia" className="py-20 bg-stone-950">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Mi Trayectoria
-            </h2>
-            <p className="text-xl text-gray-400">
-              Servidores donde he aportado mi trabajo y he crecido como Staff.
-            </p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 italic">Trayectoria Staff</h2>
+            <p className="text-gray-400">Servidores donde he dejado mi marca bloque a bloque.</p>
           </div>
-
-          <div className="space-y-6">
+          <div className="grid gap-12">
             {experiences.map((exp, index) => (
               <ExperienceItem key={index} {...exp} />
             ))}
