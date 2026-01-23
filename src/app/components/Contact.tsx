@@ -77,7 +77,7 @@ export function Contact() {
                   onClick={() => openLink(links.namemc)}
                 >
                   <img 
-                    src={nameMCLogo.src} 
+                    src={typeof nameMCLogo === 'string' ? nameMCLogo : nameMCLogo.src} 
                     alt="NameMC" 
                     className="w-6 h-6 invert opacity-50 group-hover:opacity-100 transition-opacity"
                     style={{ imageRendering: 'pixelated' }}
