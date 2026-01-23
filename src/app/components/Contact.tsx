@@ -9,7 +9,7 @@ import nameMCLogo from "@/assets/namemc-logo.png";
 export function Contact() {
   const links = {
     discord: "https://discord.com/users/_diwgo_", 
-    namemc: "hhttps://es.namemc.com/profile/diwgo_.1"
+    namemc: "https://es.namemc.com/profile/diwgo_.1"
   };
 
   const openLink = (url: string) => {
