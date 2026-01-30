@@ -1,19 +1,32 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import { Card, CardContent } from "@/app/components/ui/card";
-import { Mail, MessageSquare } from "lucide-react";
+import { Mail, MessageSquare, Copy, Check } from "lucide-react";
 // Importamos tu imagen personalizada
 import nameMCLogo from "@/assets/namemc-logo.png";
 
 export function Contact() {
+  const [isCopied, setIsCopied] = useState(false);
+
   const links = {
-    discord: "https://discord.com/users/_diwgo_", 
+    discordUser: "_diwgo_", 
     namemc: "https://es.namemc.com/profile/diwgo_.1"
   };
 
   const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopyDiscord = () => {
+    navigator.clipboard.writeText(links.discordUser);
+    setIsCopied(true);
+
+    // Volver al estado original después de 2 segundos
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
   };
 
   return (
@@ -53,7 +66,7 @@ export function Contact() {
                   <MessageSquare className="w-6 h-6 text-green-400" />
                   <div>
                     <div className="text-sm text-gray-400">Discord</div>
-                    <div className="text-white font-semibold">_diwgo_</div>
+                    <div className="text-white font-semibold">{links.discordUser}</div>
                   </div>
                 </div>
               </div>
@@ -61,11 +74,24 @@ export function Contact() {
               <div className="flex justify-center">
                 <Button 
                   size="lg" 
-                  className="bg-emerald-600 hover:bg-emerald-700 w-full md:w-auto px-12 transition-all hover:scale-105"
-                  onClick={() => openLink(links.discord)}
+                  className={`w-full md:w-auto px-12 transition-all hover:scale-105 ${
+                    isCopied 
+                      ? "bg-green-500 hover:bg-green-600" 
+                      : "bg-emerald-600 hover:bg-emerald-700"
+                  }`}
+                  onClick={handleCopyDiscord}
                 >
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  Contactar vía Discord
+                  {isCopied ? (
+                    <>
+                      <Check className="w-4 h-4 mr-2" />
+                      ¡Copiado al portapapeles!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4 mr-2" />
+                      Copiar usuario de Discord
+                    </>
+                  )}
                 </Button>
               </div>
 
