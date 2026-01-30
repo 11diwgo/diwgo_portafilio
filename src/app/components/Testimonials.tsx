@@ -42,10 +42,10 @@ export function Testimonials() {
       server: "FluxMC Network"
     },
     {
-      quote: "Próximamente...",
-      author: "En espera",
-      role: "Staff / Owner",
-      server: "Nombre del Servidor"
+      quote: "Conozco a Diego desde hace años, tengo que decir que es una persona amable, comprometida con su trabajo y no sabe dejar una cosa a medias, es una buena persona con ganas de aprender.",
+      author: "Daniqui",
+      role: "Manager",
+      server: "VaperMC Network"
     },
     {
       quote: "Próximamente...",
