@@ -36,10 +36,10 @@ export function Testimonials() {
 
   const testimonials: TestimonialProps[] = [
     {
-      quote: "Próximamente...",
-      author: "En espera",
-      role: "Staff / Owner",
-      server: "Nombre del Servidor"
+      quote: "Mi sincera opinión sobre Diego, es 5/5. Ayuda mucho, aporta ideas y no causa conflictos, buen staff, dedicada y comprometido. No es como creen, parece cerrado pero es todo lo contrario, es una gran persona realmente",
+      author: "Theo",
+      role: "Dueño del servidor",
+      server: "FluxMC Network"
     },
     {
       quote: "Próximamente...",
