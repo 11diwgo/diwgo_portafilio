@@ -94,15 +94,15 @@ export function Experience() {
     {
       server: "VaperMC Network",
       role: "Manager",
-      period: "Diciembre 2025 - Actualidad",
-      isPromotion: true,
+      period: "Diciembre 2025 - Febrero 2026",
+      isPromotion: false,
       rankImage: vaperLogo,
       bannerImage: vaperBanner,
-      description: "Entré como Administrador centrado en la moderación técnica. Mi buen desempeño me permitió ascender a Manager, donde ahora gestiono el equipo y el desarrollo de modalidades.",
+      description: "Comencé como Administrador enfocado en moderación técnica y posteriormente asumí el rol de Manager para gestionar el equipo y las futuras modalidades.",
       achievements: [
-        "Gestión integral del equipo de Staff y coordinación interna.",
-        "Desarrollo y testeo de nuevas modalidades para la Network.",
-        "Supervisión de la moderación general desde un rango superior."
+        "Coordinación del equipo de Staff y organización interna.",
+        "Colaboración en el desarrollo y testeo de nuevas modalidades.",
+        "Supervisión de las tareas de moderación y soporte."
       ],
       tags: ["Manager", "Staff Development", "Admin", "Network"],
     },
