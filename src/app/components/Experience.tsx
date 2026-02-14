@@ -95,20 +95,18 @@ export function Experience() {
   const experiences: ExperienceItemProps[] = [
     {
       server: "Astryx Network",
-      role: "Desarrollador & Manager",
+      role: "Head Manager",
       period: "Febrero 2026 - Actualidad",
       isPromotion: true,
       rankImage: astryxLogo,
       bannerImage: astryxBanner,
       description: "Proyecto en desarrollo donde me encargo de múltiples áreas clave para su próximo lanzamiento. Gestión integral del servidor tanto en la parte técnica como de comunidad.",
       achievements: [
-        "Desarrollo y configuración de plugins personalizados para Minecraft.",
+        "Desarrollo y configuración de sistemas personalizados para Minecraft.",
         "Gestión y configuración del servidor de Discord.",
         "Coordinación y formación del equipo de Staff.",
-        "Planificación de modalidades y economía del servidor.",
-        "Supervisión del desarrollo técnico y de la comunidad."
       ],
-      tags: ["Manager", "Desarrollo MC", "Discord", "Staff", "En Desarrollo"],
+      tags: ["Manager", "Desarrollo MC", "Discord", "Staff", "En Desarrollo", "Head Manager"],
     },
     {
       server: "VaperMC Network",
