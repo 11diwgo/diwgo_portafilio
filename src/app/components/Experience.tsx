@@ -102,7 +102,7 @@ export function Experience() {
       bannerImage: astryxBanner,
       description: "Proyecto actualmente en funcionamiento donde me encargo de múltiples áreas clave del servidor. Gestión integral tanto en la parte técnica como en la comunidad, incluyendo desarrollo y mantenimiento de sistemas.",
       achievements: [
-        "Desarrollo de configuración personalizadas para Minecraft.",
+        "Desarrollo de configuraciones personalizadas para Minecraft.",
         "Desarrollo de contenido para el servidores (modalidades).",
         "Gestión y configuración del servidor de Discord.",
         "Coordinación y formación del equipo de Staff.",
