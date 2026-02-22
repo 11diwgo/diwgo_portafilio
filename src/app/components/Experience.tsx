@@ -100,13 +100,14 @@ export function Experience() {
       isPromotion: true,
       rankImage: astryxLogo,
       bannerImage: astryxBanner,
-      description: "Proyecto en desarrollo donde me encargo de múltiples áreas clave para su próximo lanzamiento. Gestión integral del servidor tanto en la parte técnica como de comunidad.",
+      description: "Proyecto actualmente en funcionamiento donde me encargo de múltiples áreas clave del servidor. Gestión integral tanto en la parte técnica como en la comunidad, incluyendo desarrollo y mantenimiento de sistemas.",
       achievements: [
-        "Desarrollo y configuración de sistemas personalizados para Minecraft.",
+        "Desarrollo de configuración personalizadas para Minecraft.",
+        "Desarrollo de contenido para el servidores (modalidades).",
         "Gestión y configuración del servidor de Discord.",
         "Coordinación y formación del equipo de Staff.",
       ],
-      tags: ["Manager", "Desarrollo MC", "Discord", "Staff", "En Desarrollo", "Head Manager"],
+      tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager"],
     },
     {
       server: "VaperMC Network",
