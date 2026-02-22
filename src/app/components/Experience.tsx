@@ -10,8 +10,8 @@ import vaperBanner from "@/assets/vaper-spawn.jpg";
 import nauticLogo from "@/assets/nautic-logo.jpg";
 import nauticBanner from "@/assets/nautic-scoreboard.jpg";
 import fluxLogo from "@/assets/flux-logo.jpg";
-import astryxLogo from "@/assets/astryx-logo.jpg";
-import astryxBanner from "@/assets/astryx-banner.jpg";
+import astryxLogo from "@/assets/astryx-logo.png";
+import astryxBanner from "@/assets/astryx-banner.png";
 
 interface ExperienceItemProps {
   server: string;
