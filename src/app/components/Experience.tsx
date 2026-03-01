@@ -95,7 +95,7 @@ export function Experience() {
   const experiences: ExperienceItemProps[] = [
     {
       server: "Astryx Network",
-      role: "Head Manager",
+      role: "Dueño",
       period: "Febrero 2026 - Actualidad",
       isPromotion: true,
       rankImage: astryxLogo,
@@ -108,7 +108,7 @@ export function Experience() {
         "Gestión y configuración del servidor de Discord.",
         "Coordinación y formación del equipo de Staff.",
       ],
-      tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda"],
+      tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda", "Dueño"],
     },
     {
       server: "VaperMC Network",
