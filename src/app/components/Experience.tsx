@@ -96,7 +96,7 @@ export function Experience() {
     {
       server: "Astryx Network",
       role: "Dueño",
-      period: "Febrero 2026 - Actualidad",
+      period: "Enero 2026 - Actualidad",
       isPromotion: true,
       rankImage: astryxLogo,
       bannerImage: astryxBanner,
