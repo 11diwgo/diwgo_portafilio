@@ -4,7 +4,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app
 import { Badge } from "@/app/components/ui/badge";
 import { Calendar, TrendingUp } from "lucide-react";
 
-// NOTA: Asegúrate de tener estas imágenes en tu carpeta @/assets/
 import vaperLogo from "@/assets/vaper-logo.jpg";
 import vaperBanner from "@/assets/vaper-spawn.jpg";
 import nauticLogo from "@/assets/nautic-logo.jpg";
@@ -28,12 +27,11 @@ interface ExperienceItemProps {
 function ExperienceItem({ server, role, period, description, achievements, tags, isPromotion, rankImage, bannerImage }: ExperienceItemProps) {
   return (
     <Card className="bg-stone-900/50 border-stone-700 hover:border-emerald-500/50 transition-all duration-300 overflow-hidden">
-      {/* Banner Principal del Servidor */}
       {bannerImage && (
         <div className="w-full h-48 md:h-64 overflow-hidden border-b border-stone-700">
-          <img 
-            src={bannerImage.src || bannerImage} 
-            alt={`${server} screenshot`} 
+          <img
+            src={bannerImage.src || bannerImage}
+            alt={`${server} screenshot`}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
           />
         </div>
@@ -41,11 +39,10 @@ function ExperienceItem({ server, role, period, description, achievements, tags,
 
       <CardHeader>
         <div className="flex items-start gap-4">
-          {/* Logo del Servidor */}
           {rankImage && (
-            <img 
-              src={rankImage.src || rankImage} 
-              alt={server} 
+            <img
+              src={rankImage.src || rankImage}
+              alt={server}
               className="w-16 h-16 rounded-lg border border-emerald-500/30 object-cover"
             />
           )}
@@ -69,7 +66,7 @@ function ExperienceItem({ server, role, period, description, achievements, tags,
 
       <CardContent className="space-y-4">
         <p className="text-gray-300">{description}</p>
-        
+
         <div className="bg-black/20 p-4 rounded-lg border border-white/5">
           <h4 className="font-semibold text-white mb-2 text-sm uppercase tracking-wider text-emerald-500/80">Funciones y Logros:</h4>
           <ul className="list-disc list-inside space-y-1 text-gray-300 text-sm">
@@ -100,13 +97,13 @@ export function Experience() {
       isPromotion: true,
       rankImage: astryxLogo,
       bannerImage: astryxBanner,
-      description: "Proyecto actualmente en funcionamiento donde me encargo de múltiples áreas clave del servidor. Gestión integral tanto en la parte técnica como en la comunidad, incluyendo desarrollo y mantenimiento de plugins.",
+      description: "Servidor en activo del que me encargo en varias áreas: parte técnica, comunidad y desarrollo de plugins.",
       achievements: [
-        "Desarrollo de configuraciones personalizadas para Minecraft.",
-        "Desarrollo de contenido para el servidores (modalidades).",
-        "Mejora de la interfaz y apariencia de la tienda del servidor.",
-        "Gestión y configuración del servidor de Discord.",
-        "Coordinación y formación del equipo de Staff.",
+        "Configuración de plugins y ajustes del servidor.",
+        "Desarrollo de modalidades de juego.",
+        "Gestión de la tienda del servidor.",
+        "Administración del Discord.",
+        "Formación y coordinación del equipo de Staff.",
       ],
       tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda", "Dueño"],
     },
@@ -114,30 +111,28 @@ export function Experience() {
       server: "VaperMC Network",
       role: "Manager",
       period: "Diciembre 2025 - Febrero 2026",
-      isPromotion: false,
       rankImage: vaperLogo,
       bannerImage: vaperBanner,
-      description: "Comencé como Administrador enfocado en moderación técnica y posteriormente asumí el rol de Manager para gestionar el equipo y las futuras modalidades.",
+      description: "Entré como Administrador encargándome de la parte de moderación y acabé asumiendo el rol de Manager.",
       achievements: [
-        "Coordinación del equipo de Staff y organización interna.",
-        "Colaboración en el desarrollo y testeo de nuevas modalidades.",
-        "Supervisión de las tareas de moderación y soporte."
+        "Gestión y organización del equipo de Staff.",
+        "Participación en el desarrollo y testeo de modalidades.",
+        "Supervisión de moderación y soporte a usuarios.",
       ],
       tags: ["Manager", "Staff Development", "Admin", "Network"],
     },
     {
       server: "NauticMC (Bedrock)",
       role: "Moderador",
-      period: " Julio 2025 — Diciembre 2025",
-      isPromotion: false,
+      period: "Julio 2025 — Diciembre 2025",
       rankImage: nauticLogo,
       bannerImage: nauticBanner,
-      description: "Inicié como Trial Mod en la comunidad de Bedrock. Ascendí a Moderador tras demostrar eficacia en la resolución de conflictos y atención al usuario.",
+      description: "Empecé como Trial Mod y ascendí a Moderador. Me centré en la atención a jugadores y el cumplimiento de normas.",
       achievements: [
-        "Moderación activa in-game y control del cumplimiento de normas.",
-        "Resolución de tickets de soporte técnico y dudas de jugadores.",
-        "Soporte especializado para la plataforma Bedrock.",
-        "Manejo de herramientas de moderación."
+        "Moderación in-game y seguimiento de normas.",
+        "Gestión de tickets de soporte.",
+        "Atención a jugadores de la plataforma Bedrock.",
+        "Uso de herramientas de moderación.",
       ],
       tags: ["Moderación", "Bedrock", "Soporte", "Tickets"],
     },
@@ -146,15 +141,15 @@ export function Experience() {
       role: "Manager",
       period: "Diciembre 2025 - Diciembre 2025",
       rankImage: fluxLogo,
-      description: "Responsable de la gestión del equipo de Staff y la configuración técnica del entorno Survival.",
+      description: "Me encargué del equipo de Staff y de la configuración técnica del Survival.",
       achievements: [
-        "Desarrollo y formación del equipo de Staff del servidor.",
+        "Formación del equipo de Staff.",
         "Configuración de plugins para el Survival.",
-        "Atención personalizada a través de sistema de tickets.",
-        "Manejo de la economía y equilibrio de la modalidad."
+        "Gestión de tickets de soporte.",
+        "Ajuste de la economía de la modalidad.",
       ],
       tags: ["Manager", "Survival", "Plugins", "Staff"],
-    }
+    },
   ];
 
   return (
@@ -163,7 +158,7 @@ export function Experience() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 italic">Mi experiencia</h2>
-            <p className="text-gray-400">Servidores donde he dejado mi marca bloque a bloque.</p>
+            <p className="text-gray-400">Servidores donde he participado y aportado.</p>
           </div>
           <div className="grid gap-12">
             {experiences.map((exp, index) => (
