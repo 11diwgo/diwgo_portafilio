@@ -1,29 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react"; // Esto es para que el número funcione
+import { useState, useEffect } from "react";
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
-import { Eye } from "lucide-react"; // El icono del ojo
+import { Eye } from "lucide-react";
 import spyglassIcon from "@/assets/spyglass.png";
 import anvilIcon from "@/assets/anvil.png";
 import gearIcon from "@/assets/gear.png";
 
 export function Hero() {
-  // Aquí se guarda el número de visitas
   const [visitas, setVisitas] = useState<number>(0);
 
-  // Esta parte se encarga de contar de verdad
   useEffect(() => {
-    // Esta web (counterapi) guarda tu número. 
-    // He puesto "portfolio-mc-staff-pro" como tu nombre único.
     fetch('https://api.counterapi.dev/v1/portfolio-mc-staff-pro/visitas/up')
       .then((res) => res.json())
       .then((data) => {
-        // Guardamos el número que nos da la web
         setVisitas(data.count);
       })
       .catch(() => {
-        // Si internet falla, ponemos un número para que no salga 0
         setVisitas(124); 
       });
   }, []);
@@ -38,7 +32,6 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-950 via-green-900 to-stone-900">
       
-      {/* EL OJO Y EL CONTADOR (Arriba a la izquierda) */}
       <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-500/30 shadow-lg">
         <Eye className="w-4 h-4 text-emerald-400" />
         <span className="text-emerald-100 text-xs md:text-sm font-medium">
@@ -46,7 +39,6 @@ export function Hero() {
         </span>
       </div>
 
-      {/* Fondo de cuadritos (Grid) */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 16px, rgba(16,185,129,0.3) 16px, rgba(16,185,129,0.3) 17px),
@@ -57,7 +49,6 @@ export function Hero() {
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           
-          {/* Iconos de Minecraft flotando */}
           <div className="flex justify-center gap-8 mb-8">
             <div className="animate-bounce" style={{ animationDelay: '0s' }}>
               <img src={spyglassIcon.src || spyglassIcon} alt="Spyglass" className="w-12 h-12" style={{ imageRendering: 'pixelated' }} />
@@ -103,7 +94,6 @@ Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
             </Button>
           </div>
 
-          {/* Tarjetas de Cualidades */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-3xl mx-auto">
             <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors text-left">
               <div className="text-emerald-400 font-bold text-lg mb-1">Moderación</div>
@@ -113,14 +103,14 @@ Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
             </div>
 
             <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors text-left">
-              <div className="text-emerald-400 font-bold text-lg mb-1">Configuración</div>
+              <div className="text-emerald-400 font-bold text-lg mb-1">Server Admin</div>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Gestión de plugins y resolución de problemas técnicos dentro del juego.
               </p>
             </div>
 
             <div className="bg-black/40 backdrop-blur-md p-6 rounded-xl border border-emerald-500/20 hover:border-emerald-500/50 transition-colors text-left">
-              <div className="text-emerald-400 font-bold text-lg mb-1">Compromiso</div>
+              <div className="text-emerald-400 font-bold text-lg mb-1">Staff Manager</div>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Dedicación plena para que el proyecto crezca de forma estable y profesional.
               </p>
