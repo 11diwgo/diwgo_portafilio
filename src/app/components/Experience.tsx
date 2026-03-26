@@ -108,6 +108,23 @@ export function Experience() {
       tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda", "Dueño"],
     },
     {
+      server: "Astryx Network",
+      role: "Dueño",
+      period: "Enero 2026 - Actualidad",
+      isPromotion: true,
+      rankImage: astryxLogo,
+      bannerImage: astryxBanner,
+      description: "Servidor en activo del que me encargo en varias áreas: parte técnica, comunidad y desarrollo de plugins.",
+      achievements: [
+        "Configuración de plugins y ajustes del servidor.",
+        "Desarrollo de modalidades de juego.",
+        "Gestión de la tienda del servidor.",
+        "Administración del Discord.",
+        "Formación y coordinación del equipo de Staff.",
+      ],
+      tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda", "Dueño"],
+    },
+    {
       server: "VaperMC Network",
       role: "Manager",
       period: "Diciembre 2025 - Febrero 2026",
