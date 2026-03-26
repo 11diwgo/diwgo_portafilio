@@ -100,12 +100,11 @@ export function Experience() {
       description: "Actualmente estoy buscando un nuevo servidor donde aportar mi experiencia en gestión, administración y desarrollo. Si buscas a alguien de confianza con ganas de trabajar, ¡contáctame!",
       achievements: [
         "Experiencia en gestión y coordinación de equipos de Staff.",
-        "Conocimientos en configuración y desarrollo de plugins.",
         "Capacidad para administrar comunidades y Discord.",
         "Disponibilidad inmediata y actitud proactiva.",
         "Abierto a cualquier rol acorde a mi perfil.",
       ],
-      tags: ["Disponible", "Open to Work", "Manager", "Admin", "Plugins", "Staff"],
+      tags: ["Disponible", "Open to Work", "Manager", "Dueño", "Co-Owner", "Plugins", "Staff"],
     },
     {
       server: "Astryx Network",
