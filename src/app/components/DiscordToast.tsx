@@ -21,9 +21,8 @@ interface ToastMessage {
 
 const messages: ToastMessage[] = [
   {
-    title: "Discord",
-    body: "¿Quieres unirte a mi comunidad de Discord? Puedes hablar conmigo directamente, compartir ideas y estar al tanto de todo.",
-    hint: "Psst… puede que pronto llegue algo relacionado con una academia de Minecraft. No digo más. 🤫",
+    title: "Discord (Próximamente)",
+    body: "Si quieres conocer más sobre mi trabajo, puedes unirte a mi comunidad de Discord. Allí podrás contactarme directamente, compartir ideas y estar al tanto de mis proyectos.",
     url: "https://discord.gg/TU_INVITE_AQUI",
     cta: "Unirse al Discord",
   },
