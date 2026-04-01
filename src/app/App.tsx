@@ -6,6 +6,7 @@ import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { Skills } from "./components/Skills";
 import { Navbar, type Section } from "./components/Navbar";
+import { DiscordToast } from "./components/DiscordToast";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<Section>("inicio");
@@ -19,6 +20,9 @@ export default function App() {
     <div className="min-h-screen bg-stone-950">
       {/* Navbar siempre visible */}
       <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
+
+      {/* Toast Discord rotatorio */}
+      <DiscordToast />
 
       {/* Padding inferior para que el dock no tape el contenido */}
       <div className="pb-24">
