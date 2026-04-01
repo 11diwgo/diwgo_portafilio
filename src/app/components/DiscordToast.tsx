@@ -29,8 +29,8 @@ const messages: ToastMessage[] = [
   {
     title: "MySuggest",
     body: "¿Tienes un servidor de Discord? Añade MySuggest, mi bot de sugerencias. Fácil de configurar y muy útil para tu comunidad.",
-    hint: "Gratis, sin complicaciones. Solo añádelo y listo. ✅",
-    url: "https://discord.com/oauth2/authorize?client_id=TU_BOT_ID",
+    hint: "Gratis, sin complicaciones. Solo añádelo y listo.",
+    url: "https://discord.com/oauth2/authorize?client_id=1347887473501409300",
     cta: "Añadir MySuggest",
   },
 ];
