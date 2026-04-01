@@ -58,4 +58,3 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
     </nav>
   );
 }
-
