@@ -8,7 +8,11 @@ import spyglassIcon from "@/assets/spyglass.png";
 import anvilIcon from "@/assets/anvil.png";
 import gearIcon from "@/assets/gear.png";
 
-export function Hero() {
+interface HeroProps {
+  onNavigate?: (section: "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto") => void;
+}
+
+export function Hero({ onNavigate }: HeroProps) {
   const [visitas, setVisitas] = useState<number>(0);
 
   useEffect(() => {
@@ -22,10 +26,9 @@ export function Hero() {
       });
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollToSection = (sectionId: "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto") => {
+    if (onNavigate) {
+      onNavigate(sectionId);
     }
   };
 
@@ -123,3 +126,4 @@ Configuro plugins y gestiono Discord para un funcionamiento sencillo y eficaz.
     </section>
   );
 }
+
