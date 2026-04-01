@@ -20,8 +20,8 @@ export default function App() {
       {/* Navbar siempre visible */}
       <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
 
-      {/* Spacer para que el contenido no quede debajo del navbar fijo */}
-      <div className="pt-14">
+      {/* Padding inferior para que el dock no tape el contenido */}
+      <div className="pb-24">
 
         {activeSection === "inicio" && (
           <Hero onNavigate={handleNavigate} />
