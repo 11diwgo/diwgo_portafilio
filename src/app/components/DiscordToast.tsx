@@ -23,7 +23,7 @@ const messages: ToastMessage[] = [
   {
     title: "Discord (Próximamente)",
     body: "Si quieres conocer más sobre mi trabajo, puedes unirte a mi comunidad de Discord. Allí podrás contactarme directamente, compartir ideas y estar al tanto de mis proyectos.",
-    url: "https://discord.gg/TU_INVITE_AQUI",
+    url: "httpshttps://discord.gg/4Fr2HByRWs",
     cta: "Unirse al Discord",
   },
   {
