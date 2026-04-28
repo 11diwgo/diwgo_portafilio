@@ -11,6 +11,9 @@ import nauticBanner from "@/assets/nautic-scoreboard.jpg";
 import fluxLogo from "@/assets/flux-logo.jpg";
 import astryxLogo from "@/assets/astryx-logo.png";
 import astryxBanner from "@/assets/astryx-banner.png";
+import diosesLogo from "@/assets/dioses-logo.png";
+import diosesBanner from "@/assets/dioses-banner.png";
+
 
 interface ExperienceItemProps {
   server: string;
@@ -103,7 +106,7 @@ export function Experience() {
         "Gestión de tickets de soporte.",
         "Moderación in-game.",
       ],
-      tags: ["Moderación", "Soporte", "Tickets","Helper"],
+      tags: ["Moderación", "Soporte", "Tickets", "Helper"],
     },
     {
       server: "Astryx Network",
