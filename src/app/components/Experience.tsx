@@ -91,19 +91,19 @@ function ExperienceItem({ server, role, period, description, achievements, tags,
 export function Experience() {
   const experiences: ExperienceItemProps[] = [
     {
-      server: "NauticMC (Bedrock)",
-      role: "Moderador",
-      period: "Julio 2025 — Diciembre 2025",
+      server: "DiosesMC",
+      role: "Ayudante",
+      period: "Abril 2026 - Ahora",
+      isPromotion: true,
       rankImage: nauticLogo,
       bannerImage: nauticBanner,
-      description: "Empecé como Trial Mod y ascendí a Moderador. Me centré en la atención a jugadores y el cumplimiento de normas.",
+      description: "Como Ayudante en DiosesMC, me encargo de moderar en el juego, ayudar a los jugadores, gestionar tickets de soporte y asegurarme de que se cumplan las normas.",
       achievements: [
-        "Moderación in-game y seguimiento de normas.",
+        "Atención y orientación a jugadores con dudas o problemas.",
         "Gestión de tickets de soporte.",
-        "Atención a jugadores de la plataforma Bedrock.",
-        "Uso de herramientas de moderación.",
+        "Moderación in-game.",
       ],
-      tags: ["Moderación", "Bedrock", "Soporte", "Tickets"],
+      tags: ["Moderación", "Soporte", "Tickets","Helper"],
     },
     {
       server: "Astryx Network",
