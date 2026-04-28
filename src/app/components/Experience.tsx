@@ -98,8 +98,8 @@ export function Experience() {
       role: "Ayudante",
       period: "Abril 2026 - Ahora",
       isPromotion: true,
-      rankImage: nauticLogo,
-      bannerImage: nauticBanner,
+      rankImage: diosesLogo,
+      bannerImage: diosesBanner,
       description: "Como Ayudante en DiosesMC, me encargo de moderar en el juego, ayudar a los jugadores, gestionar tickets de soporte y asegurarme de que se cumplan las normas.",
       achievements: [
         "Atención y orientación a jugadores con dudas o problemas.",
