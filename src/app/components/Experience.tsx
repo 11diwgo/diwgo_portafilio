@@ -14,7 +14,6 @@ import astryxBanner from "@/assets/astryx-banner.png";
 import diosesLogo from "@/assets/dioses-logo.png";
 import diosesBanner from "@/assets/dioses-banner.png";
 
-
 interface ExperienceItemProps {
   server: string;
   role: string;
@@ -100,11 +99,11 @@ export function Experience() {
       isPromotion: true,
       rankImage: diosesLogo,
       bannerImage: diosesBanner,
-      description: "Como Ayudante en DiosesMC, me encargo de moderar en el juego, ayudar a los jugadores, gestionar tickets de soporte y asegurarme de que se cumplan las normas.",
+      description: "Ayudo a los jugadores, gestiono tickets y modero in-game asegurándome de que se cumplan las normas.",
       achievements: [
-        "Atención y orientación a jugadores con dudas o problemas.",
+        "Atención a jugadores con dudas o problemas.",
         "Gestión de tickets de soporte.",
-        "Moderación in-game.",
+        "Moderación in-game ante faltas leves.",
       ],
       tags: ["Moderación", "Soporte", "Tickets", "Helper"],
     },
@@ -112,16 +111,15 @@ export function Experience() {
       server: "Astryx Network",
       role: "Dueño",
       period: "Enero 2026 - Abril 2026",
-      isPromotion: false,
       rankImage: astryxLogo,
       bannerImage: astryxBanner,
-      description: "Servidor del que me encargué en varias áreas, parte técnica, comunidad y desarrollo de plugins.",
+      description: "Servidor del que me encargué en varias áreas: parte técnica, comunidad y desarrollo de plugins.",
       achievements: [
         "Configuración de plugins y ajustes del servidor.",
         "Desarrollo de modalidades de juego.",
         "Gestión de la tienda del servidor.",
         "Administración del Discord.",
-        "Formación y coordinación del equipo de Staff.",
+        "Formación del equipo de Staff.",
       ],
       tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda", "Dueño"],
     },
@@ -131,7 +129,7 @@ export function Experience() {
       period: "Diciembre 2025 - Febrero 2026",
       rankImage: vaperLogo,
       bannerImage: vaperBanner,
-      description: "Entré como Administrador encargándome de la parte de moderación y acabé asumiendo el rol de Manager.",
+      description: "Entré como Administrador encargándome de la moderación y acabé asumiendo el rol de Manager.",
       achievements: [
         "Gestión y organización del equipo de Staff.",
         "Participación en el desarrollo y testeo de modalidades.",
@@ -149,7 +147,7 @@ export function Experience() {
       achievements: [
         "Moderación in-game y seguimiento de normas.",
         "Gestión de tickets de soporte.",
-        "Atención a jugadores de la plataforma Bedrock.",
+        "Atención a jugadores de Bedrock.",
         "Uso de herramientas de moderación.",
       ],
       tags: ["Moderación", "Bedrock", "Soporte", "Tickets"],
