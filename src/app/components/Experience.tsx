@@ -140,7 +140,7 @@ export function Experience() {
     {
       server: "NauticMC (Bedrock)",
       role: "Moderador",
-      period: "Julio 2025 — Diciembre 2025",
+      period: "Julio 2025 -Diciembre 2025",
       rankImage: nauticLogo,
       bannerImage: nauticBanner,
       description: "Empecé como Trial Mod y ascendí a Moderador. Me centré en la atención a jugadores y el cumplimiento de normas.",
