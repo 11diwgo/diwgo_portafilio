@@ -93,24 +93,10 @@ function ExperienceItem({ server, role, period, description, achievements, tags,
 export function Experience() {
   const experiences: ExperienceItemProps[] = [
     {
-      server: "DiosesMC",
-      role: "Ayudante",
-      period: "Abril 2026 - Ahora",
-      isPromotion: true,
-      rankImage: diosesLogo,
-      bannerImage: diosesBanner,
-      description: "Ayudo a los jugadores, gestiono tickets y modero in-game asegurándome de que se cumplan las normas.",
-      achievements: [
-        "Atención a jugadores con dudas o problemas.",
-        "Gestión de tickets de soporte.",
-        "Moderación in-game ante faltas leves.",
-      ],
-      tags: ["Moderación", "Soporte", "Tickets", "Helper"],
-    },
-    {
       server: "Astryx Network",
       role: "Dueño",
-      period: "Enero 2026 - Abril 2026",
+      period: "Enero 2026 - Ahora",
+      isPromotion: true,
       rankImage: astryxLogo,
       bannerImage: astryxBanner,
       description: "Servidor del que me encargué en varias áreas: parte técnica, comunidad y desarrollo de plugins.",
