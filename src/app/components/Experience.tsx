@@ -33,7 +33,7 @@ const experiences: ExperienceItem[] = [
     isPromotion: true,
     rankImage: astryxLogo,
     bannerImage: astryxBanner,
-    description: "Servidor del que me encargué en varias áreas: parte técnica, comunidad y desarrollo de plugins.",
+    description: "Servidor del que me encargué en varias áreas: parte técnica, comunidad y configuración de plugins.",
     achievements: [
       "Configuración de plugins y ajustes del servidor.",
       "Desarrollo de modalidades de juego.",
@@ -46,8 +46,10 @@ const experiences: ExperienceItem[] = [
   {
     server: "KaosMC",
     role: "Head Manager",
-    period: "2026 - Ahora",
+    period: "Mayo 2026 - Ahora",
     isPromotion: true,
+    rankImage: kaosLogo,
+    bannerImage: kaosBanner,
     description: "Servidor activo donde me ocupo de la tienda Tebex, la gestión del Discord y configuraciones de Minecraft.",
     achievements: [
       "Gestión y configuración de la tienda Tebex.",
