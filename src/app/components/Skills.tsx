@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  Shield, Settings, Users, MessageSquare, Wrench, Terminal, Code2, BookOpen,
+  Shield, Settings, Users, MessageSquare, Wrench, Terminal, Code2, BookOpen, Zap,
 } from "lucide-react";
 
 interface Skill { name: string; level: "Alto" | "Medio" | "Aprendiendo" }
@@ -77,7 +77,6 @@ const categories: SkillCategory[] = [
   },
 ];
 
-// ── About me card ────────────────────────────────────────────────────────────
 function AboutMe() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -93,6 +92,12 @@ function AboutMe() {
 
   const items = [
     {
+      icon: <Zap className="w-4 h-4" />,
+      color: "text-amber-500 bg-amber-50 border-amber-200",
+      title: "Autodidacta",
+      desc: "Todo lo que sé lo he aprendido solo. Sin cursos, sin que nadie me enseñe. A base de probar, romper cosas e intentarlo de nuevo.",
+    },
+    {
       icon: <Settings className="w-4 h-4" />,
       color: "text-orange-500 bg-orange-50 border-orange-200",
       title: "Configuración Minecraft",
@@ -102,7 +107,7 @@ function AboutMe() {
       icon: <Code2 className="w-4 h-4" />,
       color: "text-violet-500 bg-violet-50 border-violet-200",
       title: "Aprendiendo a crear plugins",
-      desc: "Estoy aprendiendo Java para hacer mis propios plugins de Minecraft. De momento conceptos básicos, pero avanzando.",
+      desc: "Estoy aprendiendo Java para hacer mis propios plugins de Minecraft. De momento conceptos básicos pero avanzando cada día.",
     },
     {
       icon: <MessageSquare className="w-4 h-4" />,
@@ -125,7 +130,6 @@ function AboutMe() {
       style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(24px)" }}
     >
       <div className="bg-white/70 backdrop-blur-sm rounded-2xl border border-green-200 overflow-hidden shadow-sm">
-        {/* Titlebar */}
         <div className="flex items-center gap-2 px-5 py-3 border-b border-gray-100 bg-gray-50">
           <div className="flex gap-1">
             <div className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
@@ -145,11 +149,11 @@ function AboutMe() {
             </span>
           </div>
           <p className="text-gray-500 text-sm mb-6 leading-relaxed max-w-2xl">
-            Me muevo bien en el mundo de Minecraft y Discord. No soy todo dev, pero sí sé lo que hago:
-            gestionar, configurar y hacer que las cosas funcionen. Y lo que no sé todavía, lo estoy aprendiendo.
+            Soy autodidacta. Todo lo que sé lo he aprendido por mi cuenta a base de probar y equivocarme.
+            Cada día aprendo algo nuevo y eso no va a parar. No soy todo dev pero sé lo que hago y lo que no sé todavía lo estoy aprendiendo.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {items.map((item, i) => (
               <div
                 key={i}
@@ -157,7 +161,6 @@ function AboutMe() {
                 style={{
                   background: "rgba(255,255,255,0.8)",
                   borderColor: "rgba(34,197,94,0.2)",
-                  transitionDelay: `${i * 60}ms`,
                   opacity: visible ? 1 : 0,
                   transform: visible ? "translateY(0)" : "translateY(16px)",
                   transition: `opacity 0.5s ease ${i * 80}ms, transform 0.5s ease ${i * 80}ms`,
@@ -177,7 +180,6 @@ function AboutMe() {
   );
 }
 
-// ── Skill card ───────────────────────────────────────────────────────────────
 function SkillCard({ cat, index }: { cat: SkillCategory; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -240,7 +242,6 @@ function SkillCard({ cat, index }: { cat: SkillCategory; index: number }) {
   );
 }
 
-// ── Main export ──────────────────────────────────────────────────────────────
 export function Skills() {
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
@@ -259,7 +260,6 @@ export function Skills() {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
 
-          {/* Header */}
           <div
             ref={headerRef}
             className="text-center mb-12 transition-all duration-700"
@@ -289,10 +289,9 @@ export function Skills() {
               </span>
             </h2>
             <p className="text-gray-500 text-lg max-w-xl mx-auto">
-              Áreas en las que me muevo bien — y alguna en la que aún estoy creciendo.
+              Autodidacta, cada día aprendo algo nuevo y no pienso parar.
             </p>
 
-            {/* Legend */}
             <div className="flex items-center justify-center gap-3 mt-6 flex-wrap">
               {(["Alto", "Medio", "Aprendiendo"] as const).map(lvl => (
                 <span
@@ -307,10 +306,8 @@ export function Skills() {
             </div>
           </div>
 
-          {/* About me */}
           <AboutMe />
 
-          {/* Skills grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5">
             {categories.map((cat, i) => (
               <SkillCard key={i} cat={cat} index={i} />
