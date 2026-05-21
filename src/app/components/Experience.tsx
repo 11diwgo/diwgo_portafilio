@@ -50,11 +50,11 @@ const experiences: ExperienceItem[] = [
     isPromotion: true,
     rankImage: kaosLogo,
     bannerImage: kaosBanner,
-    description: "Servidor activo donde me ocupo de la tienda Tebex, la gestión del Discord y configuraciones de Minecraft.",
+    description: "Servidor que abrirá próximamente donde me ocupo de la tienda Tebex, la gestión del Discord y configuraciones de Minecraft.",
     achievements: [
       "Gestión y configuración de la tienda Tebex.",
       "Administración del servidor de Discord.",
-      "Configuración de algunos plugins de Minecraft.",
+      "Configuración de varios plugins de Minecraft.",
     ],
     tags: ["Head Manager", "Tebex", "Discord", "Plugins", "Staff"],
   },
