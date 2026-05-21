@@ -118,7 +118,7 @@ function ExpCard({ exp, index }: { exp: ExperienceItem; index: number }) {
           className={`w-10 h-10 rounded-full flex items-center justify-center border-2 z-10 transition-all duration-500 ${
             exp.isPromotion
               ? "bg-green-500 border-green-400 shadow-lg"
-              : "bg-white border-green-300"
+              : "bg-green-50 border-green-300"
           }`}
           style={exp.isPromotion ? { boxShadow: "0 0 20px rgba(34,197,94,0.5)" } : {}}
         >
@@ -139,7 +139,7 @@ function ExpCard({ exp, index }: { exp: ExperienceItem; index: number }) {
 
       {/* Card */}
       <div className="flex-1 mb-10">
-        <div className="bg-white rounded-2xl border border-green-100 overflow-hidden card-hover">
+        <div className="bg-green-50/80 rounded-2xl border border-green-200 overflow-hidden card-hover">
           {/* Banner */}
           {exp.bannerImage && (
             <div className="h-40 overflow-hidden">
@@ -236,7 +236,7 @@ export function Experience() {
   }, []);
 
   return (
-    <section id="experiencia" className="py-20 bg-white">
+    <section id="experiencia" className="py-20 bg-green-50/40">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
 
