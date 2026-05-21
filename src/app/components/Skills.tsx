@@ -47,7 +47,7 @@ const categories: SkillCategory[] = [
     skills: [
       { name: "Bots propios",                level: "Alto"  },
       { name: "Canales, roles & permisos",   level: "Alto"  },
-      { name: "Webhooks & embeds & Components V2)",           level: "Alto"  },
+      { name: "Webhooks & embeds",           level: "Alto"  },
       { name: "Automod & seguridad",         level: "Alto"  },
       { name: "Nekotina / MEE6 / ProBot",    level: "Alto"  },
     ],
@@ -61,7 +61,7 @@ const categories: SkillCategory[] = [
       { name: "DeluxeMenus / TAB",           level: "Alto"  },
       { name: "FancyHolograms / NPCs",       level: "Alto"  },
       { name: "Creación de plugins Java",    level: "Aprendiendo" },
-      { name: "Adaptació a nnuevos plugins", level: "Alto"  },
+      { name: "Adaptación a nuevos plugins", level: "Alto"  },
     ],
   },
   {
@@ -270,11 +270,11 @@ export function Skills() {
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               <Terminal className="w-3.5 h-3.5" />
-              <span className="text-xs">cat skills.json | grep "nivel: alto"</span>
+              <span className="text-xs">cat about.me</span>
             </div>
 
             <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>
-              Mis{" "}
+              Sobre{" "}
               <span
                 className="text-transparent"
                 style={{
@@ -285,11 +285,11 @@ export function Skills() {
                   animation: "shimmer 3s linear infinite",
                 }}
               >
-                Conocimientos
+                Mí
               </span>
             </h2>
             <p className="text-gray-500 text-lg max-w-xl mx-auto">
-              Áreas en las que me muevo bien - y alguna en la que aún estoy creciendo.
+              Áreas en las que me muevo bien — y alguna en la que aún estoy creciendo.
             </p>
 
             {/* Legend */}
