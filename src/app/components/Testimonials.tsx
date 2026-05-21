@@ -143,7 +143,7 @@ export function Testimonials() {
       server: "VaperMC Network",
     },
     {
-      quote: "Diego desde que ha estado en el proyecto ha tenido un cambio y una evolucion notable, eecomendado para proyectos profesionales. Persona muy dedicada y activa.",
+      quote: "Diego desde que ha estado en el proyecto ha tenido un cambio y una evolucion notable, recomendado para proyectos profesionales. Persona muy dedicada y activa.",
       author: "Struffed",
       role: "Fundador del servidor",
       server: "Astryx Network",
