@@ -28,7 +28,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contacto" className="py-20 bg-gradient-to-b from-green-50/50 to-white">
+    <section id="contacto" className="py-20 bg-gradient-to-b from-green-100/50 to-green-50/60">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto" ref={ref}>
 
@@ -87,7 +87,7 @@ export function Contact() {
             </div>
 
             {/* Content */}
-            <div className="p-8 md:p-12" style={{ background: "linear-gradient(135deg, #f0fdf4, #dcfce7, #f0fdf4)" }}>
+            <div className="p-8 md:p-12" style={{ background: "linear-gradient(135deg, #cce5d4, #b8dcc3, #cce5d4)" }}>
 
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-black text-gray-900 mb-3" style={{ fontFamily: "'Syne', sans-serif" }}>
@@ -101,7 +101,7 @@ export function Contact() {
               {/* Contact options */}
               <div className="grid md:grid-cols-2 gap-4 mb-8">
                 {/* Email - coming soon */}
-                <div className="flex items-center gap-4 p-4 bg-white/60 rounded-2xl border border-gray-200 opacity-50">
+                <div className="flex items-center gap-4 p-4 bg-green-50/60 rounded-2xl border border-gray-200 opacity-50">
                   <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
                     <Mail className="w-5 h-5 text-gray-400" />
                   </div>
@@ -113,7 +113,7 @@ export function Contact() {
 
                 {/* Discord - active */}
                 <div
-                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border-2 border-green-300 shadow-md"
+                  className="flex items-center gap-4 p-4 bg-green-50 rounded-2xl border-2 border-green-300 shadow-md"
                   style={{ boxShadow: "0 0 20px rgba(34,197,94,0.15)" }}
                 >
                   <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
