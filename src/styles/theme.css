@@ -6,17 +6,17 @@
   --font-size: 16px;
 
   /* === NUEVA PALETA LIGHT + GREEN CODER === */
-  --background: #f0fdf4;
+  --background: #d8eedf;
   --foreground: #052e16;
-  --card: #ffffff;
+  --card: #f2faf4;
   --card-foreground: #052e16;
   --popover: #ffffff;
   --popover-foreground: #052e16;
   --primary: #16a34a;
   --primary-foreground: #ffffff;
-  --secondary: #dcfce7;
+  --secondary: #c4e0cc;
   --secondary-foreground: #052e16;
-  --muted: #f0fdf4;
+  --muted: #d8eedf;
   --muted-foreground: #4b5563;
   --accent: #bbf7d0;
   --accent-foreground: #052e16;
@@ -24,7 +24,7 @@
   --destructive-foreground: #ffffff;
   --border: #bbf7d0;
   --input: #ffffff;
-  --input-background: #f0fdf4;
+  --input-background: #d8eedf;
   --switch-background: #86efac;
   --font-weight-medium: 600;
   --font-weight-normal: 400;
@@ -78,7 +78,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Syne', sans-serif;
-    background-color: #f0fdf4;
+    background-color: #d0ebd7;
     overflow-x: hidden;
   }
 
@@ -102,7 +102,7 @@
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #f0fdf4;
+    background: #d8eedf;
   }
   ::-webkit-scrollbar-thumb {
     background: #22c55e;
@@ -226,4 +226,3 @@
   .token-green     { color: #7ee787; }
   .token-number    { color: #79c0ff; }
 }
-
