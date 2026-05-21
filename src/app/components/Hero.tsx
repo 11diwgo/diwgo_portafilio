@@ -13,7 +13,7 @@ interface HeroProps {
 // ── Discord status via Lanyard ──────────────────────────────────────────────
 // Para que funcione: únete a discord.gg/lanyard con tu cuenta de Discord
 // Luego reemplaza DISCORD_USER_ID con tu ID (clic derecho en tu perfil → "Copiar ID")
-const DISCORD_USER_ID = "TU_ID_AQUI";
+const DISCORD_USER_ID = "1007338838911361164";
 
 const STATUS_CONFIG = {
   online:  { label: "Online",       color: "#22c55e", dot: "bg-green-400",  pulse: true  },
