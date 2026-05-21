@@ -44,7 +44,7 @@ const experiences: ExperienceItem[] = [
     tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda", "Dueño"],
   },
   {
-    server: "KaosMC",
+    server: "KaosMC Network",
     role: "Head Manager",
     period: "Mayo 2026 - Ahora",
     isPromotion: true,
