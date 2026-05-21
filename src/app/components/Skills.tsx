@@ -289,7 +289,7 @@ export function Skills() {
               </span>
             </h2>
             <p className="text-gray-500 text-lg max-w-xl mx-auto">
-              Áreas en las que me muevo bien — y alguna en la que aún estoy creciendo.
+              Áreas en las que me muevo bien - y alguna en la que aún estoy creciendo.
             </p>
 
             {/* Legend */}
