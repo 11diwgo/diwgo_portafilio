@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardContent } from "@/app/components/ui/card";
-import { Quote } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Quote, Terminal, Star } from "lucide-react";
 
 interface TestimonialProps {
   quote: string;
@@ -10,27 +10,116 @@ interface TestimonialProps {
   server: string;
 }
 
-function TestimonialCard({ quote, author, role, server }: TestimonialProps) {
+function TestimonialCard({ quote, author, role, server, index }: TestimonialProps & { index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const isPending = quote === "Próximamente...";
+
   return (
-    <Card className="bg-stone-900/50 border-emerald-700/50 hover:border-green-500/50 transition-all duration-300">
-      <CardContent className="p-6 text-center">
-        <Quote className="w-8 h-8 text-emerald-500/30 mx-auto mb-4" />
-        <p className="text-gray-500 text-lg mb-6 italic leading-relaxed">
-          &ldquo;{quote}&rdquo;
-        </p>
-        <div className="border-t border-stone-800 pt-4">
-          <p className="font-semibold text-white/50">{author}</p>
-          <p className="text-emerald-500/40 text-sm">{role}</p>
-          <p className="text-gray-600 text-xs font-mono mt-1">{server}</p>
+    <div
+      ref={ref}
+      className="transition-all duration-600"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(28px)",
+        transitionDelay: `${index * 100}ms`,
+      }}
+    >
+      <div
+        className={`rounded-2xl border overflow-hidden card-hover h-full flex flex-col ${
+          isPending
+            ? "bg-green-50/40 border-green-100 opacity-50"
+            : "bg-green-50/60 border-green-200"
+        }`}
+      >
+        {/* Card header tab */}
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-green-100 bg-green-50/80">
+          <div className="flex gap-1">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-400/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-400/60" />
+          </div>
+          <span className="ml-2 text-xs font-mono text-gray-400">
+            review_{server.toLowerCase().replace(/ /g, "_").replace(/\./g, "")}.txt
+          </span>
         </div>
-      </CardContent>
-    </Card>
+
+        <div className="p-6 flex flex-col flex-1">
+          {/* Quote icon */}
+          <div className="w-8 h-8 rounded-lg bg-green-100 border border-green-200 flex items-center justify-center mb-4 flex-shrink-0">
+            <Quote className="w-4 h-4 text-green-600" />
+          </div>
+
+          {/* Quote text */}
+          <p
+            className={`text-base leading-relaxed flex-1 mb-6 ${
+              isPending ? "text-gray-400 italic" : "text-gray-700"
+            }`}
+          >
+            &ldquo;{quote}&rdquo;
+          </p>
+
+          {/* Author */}
+          <div className="border-t border-green-100 pt-4">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <p
+                  className="font-bold text-gray-900 text-sm"
+                  style={{ fontFamily: "'Syne', sans-serif" }}
+                >
+                  {author}
+                </p>
+                <p
+                  className="text-green-600 text-xs font-semibold mt-0.5"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  {role}
+                </p>
+                <p
+                  className="text-gray-400 text-xs mt-0.5"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  // {server}
+                </p>
+              </div>
+              {!isPending && (
+                <div className="flex gap-0.5 flex-shrink-0">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 text-green-400 fill-green-400" />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
 export function Testimonials() {
-  // INTERRUPTOR: Ahora está en true para que veas los recuadros
   const mostrarSeccion = true;
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setHeaderVisible(true); observer.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    if (headerRef.current) observer.observe(headerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   if (!mostrarSeccion) return null;
 
@@ -39,44 +128,74 @@ export function Testimonials() {
       quote: "Próximamente...",
       author: "¿?",
       role: "Próximamente",
-      server: "Próximamente"
+      server: "Próximamente",
     },
     {
       quote: "Mi sincera opinión sobre Diego, es 5/5. Ayuda mucho, aporta ideas y no causa conflictos, buen staff, dedicado y comprometido. No es como creen, parece cerrado pero es todo lo contrario, es una gran persona realmente.",
       author: "Theo",
       role: "Dueño del servidor",
-      server: "FluxMC Network"
+      server: "FluxMC Network",
     },
     {
       quote: "Conozco a Diego desde hace años, tengo que decir que es una persona amable, comprometida con su trabajo y no sabe dejar una cosa a medias, es una buena persona con ganas de aprender.",
       author: "Daniqui",
       role: "Manager",
-      server: "VaperMC Network"
+      server: "VaperMC Network",
     },
     {
       quote: "Diego es una persona sumamente eficaz en diversos aspectos. Se compromete profundamente con cada responsabilidad que asume y demuestra un alto nivel de profesionalismo en su trabajo. En el poco tiempo que lleva en Astryx, se ha convertido en una de las piezas más fundamentales del proyecto. Sin duda, es un gran profesional y un valioso miembro del equipo.",
       author: "Addwed",
       role: "Dueño del servidor",
-      server: "Astryx Network"
-    }
+      server: "Astryx Network",
+    },
   ];
 
   return (
-    <section id="testimonios" className="py-20 bg-stone-950">
+    <section id="testimonios" className="py-20 bg-gradient-to-b from-white to-green-50/40">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 italic tracking-tight">
-              Testimonios
+
+          {/* Header */}
+          <div
+            ref={headerRef}
+            className="text-center mb-16 transition-all duration-700"
+            style={{ opacity: headerVisible ? 1 : 0, transform: headerVisible ? "none" : "translateY(24px)" }}
+          >
+            <div
+              className="inline-flex items-center gap-2 bg-gray-900 text-green-400 px-4 py-2 rounded-full mb-6 border border-gray-700"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            >
+              <Terminal className="w-3.5 h-3.5" />
+              <span className="text-xs">grep -r "diwgo" reviews/*.txt</span>
+            </div>
+
+            <h2
+              className="text-5xl md:text-6xl font-black text-gray-900 mb-4"
+              style={{ fontFamily: "'Syne', sans-serif" }}
+            >
+              Lo que{" "}
+              <span
+                className="text-transparent"
+                style={{
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  backgroundImage: "linear-gradient(135deg, #16a34a, #22c55e, #4ade80)",
+                  backgroundSize: "200% auto",
+                  animation: "shimmer 3s linear infinite",
+                }}
+              >
+                dicen
+              </span>
             </h2>
-            <p className="text-xl text-gray-500">
+            <p className="text-gray-500 text-lg">
               Opiniones de colegas y administradores con los que he trabajado
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard key={index} {...testimonial} />
+          {/* Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-5 max-w-4xl mx-auto">
+            {testimonials.map((t, i) => (
+              <TestimonialCard key={i} {...t} index={i} />
             ))}
           </div>
         </div>
