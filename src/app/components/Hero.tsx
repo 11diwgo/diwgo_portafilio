@@ -55,7 +55,7 @@ const CONSOLE_LINES = [
   { time: "12:03:01", thread: "Server thread", level: "INFO",  msg: "Starting Minecraft server..." },
   { time: "12:03:02", thread: "LuckPerms",     level: "INFO",  msg: "Loaded 8 groups, 47 users" },
   { time: "12:03:03", thread: "EssentialsX",   level: "INFO",  msg: "Loaded 312 users data" },
-  { time: "12:03:04", thread: "DeluxeMenus",   level: "INFO",  msg: "Loaded 6 menus successfully" },
+  { time: "12:03:09", thread: "DeluxeMenus",   level: "INFO",  msg: "Loaded 6 menus successfully" },
   { time: "12:03:05", thread: "Discord Bot",   level: "INFO",  msg: "Bot conectado - _diwgo_ online" },
   { time: "12:03:07", thread: "Server thread", level: "INFO",  msg: "Done! 247 players can join" },
 ];
