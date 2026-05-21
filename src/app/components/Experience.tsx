@@ -54,8 +54,7 @@ const experiences: ExperienceItem[] = [
     achievements: [
       "Gestión y configuración de la tienda Tebex.",
       "Administración del servidor de Discord.",
-      "Configuración de plugins de Minecraft.",
-      "Coordinación del equipo de Staff.",
+      "Configuración de algunos plugins de Minecraft.",
     ],
     tags: ["Head Manager", "Tebex", "Discord", "Plugins", "Staff"],
   },
