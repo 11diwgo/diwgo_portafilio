@@ -85,7 +85,7 @@ export function Hero({ onNavigate }: HeroProps) {
     <section
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 30%, #f0fdf4 60%, #ecfdf5 100%)" }}
+      style={{ background: "linear-gradient(135deg, #cce5d4 0%, #b8dcc2 30%, #cce5d4 60%, #c4e0cb 100%)" }}
     >
       {/* Animated grid background */}
       <div
@@ -119,7 +119,7 @@ export function Hero({ onNavigate }: HeroProps) {
           }}
         >
           <div
-            className="px-3 py-1.5 rounded-lg text-xs font-mono text-green-700 border border-green-200 bg-white/70 backdrop-blur-sm shadow-sm"
+            className="px-3 py-1.5 rounded-lg text-xs font-mono text-green-700 border border-green-200 bg-white/60 backdrop-blur-sm shadow-sm"
             style={{ fontSize: "11px" }}
           >
             <span className="text-green-500 mr-1">$</span>{s.code}
@@ -128,7 +128,7 @@ export function Hero({ onNavigate }: HeroProps) {
       ))}
 
       {/* Visits badge */}
-      <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-green-200 shadow-sm">
+      <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-white/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-green-200 shadow-sm">
         <Eye className="w-3.5 h-3.5 text-green-500" />
         <span className="text-green-700 text-xs font-mono font-medium">
           {visitas > 0 ? `${visitas.toLocaleString()} visitas` : "..."}
@@ -192,7 +192,7 @@ export function Hero({ onNavigate }: HeroProps) {
                 </button>
                 <button
                   onClick={() => onNavigate?.("contacto")}
-                  className="flex items-center gap-2 px-6 py-3 bg-white text-green-700 rounded-xl font-semibold text-sm border-2 border-green-300 transition-all duration-300 hover:border-green-500 hover:bg-green-50 hover:-translate-y-1"
+                  className="flex items-center gap-2 px-6 py-3 bg-green-50 text-green-700 rounded-xl font-semibold text-sm border-2 border-green-300 transition-all duration-300 hover:border-green-500 hover:bg-green-50 hover:-translate-y-1"
                 >
                   <Zap className="w-4 h-4" />
                   Contáctame
@@ -273,7 +273,7 @@ export function Hero({ onNavigate }: HeroProps) {
                 ].map((stat, i) => (
                   <div
                     key={i}
-                    className="bg-white rounded-xl p-3 border border-green-100 text-center card-hover"
+                    className="bg-green-50/80 rounded-xl p-3 border border-green-100 text-center card-hover"
                   >
                     <div className="text-xl mb-1">{stat.icon}</div>
                     <div className="text-green-700 font-black text-lg leading-none">{stat.value}</div>
@@ -293,7 +293,7 @@ export function Hero({ onNavigate }: HeroProps) {
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-white/80 backdrop-blur-sm p-5 rounded-xl border border-green-100 card-hover animate-fade-up"
+                className="bg-white/70 backdrop-blur-sm p-5 rounded-xl border border-green-100 card-hover animate-fade-up"
                 style={{ animationDelay: `${0.5 + i * 0.15}s` }}
               >
                 <div className="flex items-start justify-between mb-2">
