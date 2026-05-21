@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Home, Briefcase, Cpu, Star, Mail, Terminal } from "lucide-react";
+import { Home, Briefcase, User, Star, Mail, Terminal } from "lucide-react";
 
 export type Section = "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto";
 
@@ -11,11 +11,11 @@ interface NavbarProps {
 }
 
 const navItems: { id: Section; label: string; icon: React.ReactNode }[] = [
-  { id: "inicio",        label: "~/inicio",        icon: <Home      className="w-4 h-4" /> },
-  { id: "experiencia",   label: "~/exp",            icon: <Briefcase className="w-4 h-4" /> },
-  { id: "conocimientos", label: "~/skills",         icon: <Cpu       className="w-4 h-4" /> },
-  { id: "testimonios",   label: "~/reviews",        icon: <Star      className="w-4 h-4" /> },
-  { id: "contacto",      label: "~/contacto",       icon: <Mail      className="w-4 h-4" /> },
+  { id: "inicio",        label: "~/inicio",     icon: <Home      className="w-4 h-4" /> },
+  { id: "experiencia",   label: "~/exp",         icon: <Briefcase className="w-4 h-4" /> },
+  { id: "conocimientos", label: "~/sobre-mi",    icon: <User      className="w-4 h-4" /> },
+  { id: "testimonios",   label: "~/reviews",     icon: <Star      className="w-4 h-4" /> },
+  { id: "contacto",      label: "~/contacto",    icon: <Mail      className="w-4 h-4" /> },
 ];
 
 export function Navbar({ activeSection, onNavigate }: NavbarProps) {
