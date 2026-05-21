@@ -56,7 +56,7 @@ const CONSOLE_LINES = [
   { time: "12:03:02", thread: "LuckPerms",     level: "INFO",  msg: "Loaded 8 groups, 47 users" },
   { time: "12:03:03", thread: "EssentialsX",   level: "INFO",  msg: "Loaded 312 users data" },
   { time: "12:03:04", thread: "DeluxeMenus",   level: "INFO",  msg: "Loaded 6 menus successfully" },
-  { time: "12:03:05", thread: "Discord Bot",   level: "INFO",  msg: "Bot conectado — _diwgo_ online" },
+  { time: "12:03:05", thread: "Discord Bot",   level: "INFO",  msg: "Bot conectado - _diwgo_ online" },
   { time: "12:03:07", thread: "Server thread", level: "INFO",  msg: "Done! 247 players can join" },
 ];
 
@@ -197,7 +197,7 @@ export function Hero({ onNavigate }: HeroProps) {
               </div>
             </div>
 
-            {/* RIGHT — MC Console */}
+            {/* RIGHT - MC Console */}
             <div className={`transition-all duration-700 delay-300 ${titleVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-800" style={{ background: "#0d1117" }}>
 
@@ -206,7 +206,7 @@ export function Hero({ onNavigate }: HeroProps) {
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  <span className="ml-3 text-xs font-mono text-gray-500">astryx-network — server console</span>
+                  <span className="ml-3 text-xs font-mono text-gray-500">astryx-network - server console</span>
                   <div className="ml-auto flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                     <span className="text-xs font-mono text-green-400">live</span>
@@ -246,7 +246,7 @@ export function Hero({ onNavigate }: HeroProps) {
                 {/* Bottom bar */}
                 <div className="px-4 pb-3 pt-2 border-t border-gray-800 flex items-center gap-2" style={{ background: "#010409" }}>
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="font-mono text-xs text-green-400">Servidor online — 247 players conectados</span>
+                  <span className="font-mono text-xs text-green-400">Servidor online - 247 players conectados</span>
                 </div>
               </div>
 
