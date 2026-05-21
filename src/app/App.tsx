@@ -17,40 +17,36 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-950">
+    <div className="min-h-screen" style={{ background: "#f0fdf4" }}>
       {/* Navbar siempre visible */}
       <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
 
       {/* Toast Discord rotatorio */}
       <DiscordToast />
 
-      {/* Padding inferior para que el dock no tape el contenido */}
-      <div className="pb-24">
+      {activeSection === "inicio" && (
+        <Hero onNavigate={handleNavigate} />
+      )}
 
-        {activeSection === "inicio" && (
-          <Hero onNavigate={handleNavigate} />
-        )}
+      {activeSection === "experiencia" && (
+        <Experience />
+      )}
 
-        {activeSection === "experiencia" && (
-          <Experience />
-        )}
+      {activeSection === "conocimientos" && (
+        <Skills />
+      )}
 
-        {activeSection === "conocimientos" && (
-          <Skills />
-        )}
+      {activeSection === "testimonios" && (
+        <Testimonials />
+      )}
 
-        {activeSection === "testimonios" && (
-          <Testimonials />
-        )}
-
-        {activeSection === "contacto" && (
-          <Contact />
-        )}
-
-      </div>
+      {activeSection === "contacto" && (
+        <Contact />
+      )}
 
       {/* Footer siempre visible */}
       <Footer />
     </div>
   );
 }
+
