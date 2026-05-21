@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer
       className="py-12 border-t border-green-100"
-      style={{ background: "linear-gradient(135deg, #f0fdf4, #ecfdf5)" }}
+      style={{ background: "linear-gradient(135deg, #cce5d4, #c4e0cb)" }}
     >
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto flex flex-col items-center gap-4 text-center">
