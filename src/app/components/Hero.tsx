@@ -254,9 +254,9 @@ export function Hero({ onNavigate }: HeroProps) {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-3 mt-4">
                 {[
-                  { label: "Proyectos", value: "4+", icon: "🚀" },
-                  { label: "Años XP",   value: "2+", icon: "⚡" },
-                  { label: "Discord",   value: cfg.label, icon: "💬", color: cfg.color },
+                  { label: "Proyectos", value: "4+", icon: "" },
+                  { label: "Años XP",   value: "1", icon: "" },
+                  { label: "Discord",   value: cfg.label, icon: "", color: cfg.color },
                 ].map((stat, i) => (
                   <div key={i} className="bg-green-50/80 rounded-xl p-3 border border-green-100 text-center card-hover">
                     <div className="text-xl mb-1">{stat.icon}</div>
