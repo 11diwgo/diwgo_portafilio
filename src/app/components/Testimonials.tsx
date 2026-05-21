@@ -143,9 +143,9 @@ export function Testimonials() {
       server: "VaperMC Network",
     },
     {
-      quote: "Diego es una persona sumamente eficaz en diversos aspectos. Se compromete profundamente con cada responsabilidad que asume y demuestra un alto nivel de profesionalismo en su trabajo. En el poco tiempo que lleva en Astryx, se ha convertido en una de las piezas más fundamentales del proyecto. Sin duda, es un gran profesional y un valioso miembro del equipo.",
-      author: "Addwed",
-      role: "Dueño del servidor",
+      quote: "Diego desde que ha estado en el proyecto ha tenido un cambio y una evolucion notable, eecomendado para proyectos profesionales. Persona muy dedicada y activa.",
+      author: "Struffed",
+      role: "Fundador del servidor",
       server: "Astryx Network",
     },
   ];
