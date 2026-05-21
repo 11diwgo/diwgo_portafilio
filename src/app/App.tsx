@@ -17,7 +17,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "#f0fdf4" }}>
+    <div className="min-h-screen" style={{ background: "#d8eedf" }}>
       {/* Navbar siempre visible */}
       <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
 
