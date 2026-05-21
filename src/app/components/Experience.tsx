@@ -10,8 +10,8 @@ import nauticBanner from "@/assets/nautic-scoreboard.jpg";
 import fluxLogo from "@/assets/flux-logo.jpg";
 import astryxLogo from "@/assets/astryx-logo.png";
 import astryxBanner from "@/assets/astryx-banner.png";
-import diosesLogo from "@/assets/dioses-logo.png";
-import diosesBanner from "@/assets/dioses-banner.png";
+import kaosLogo from "@/assets/kaos-logo.png";
+import kaosBanner from "@/assets/kaos-banner.png";
 
 interface ExperienceItem {
   server: string;
