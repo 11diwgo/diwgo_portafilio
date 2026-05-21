@@ -44,6 +44,20 @@ const experiences: ExperienceItem[] = [
     tags: ["Manager", "Plugins", "Discord", "Staff", "Configuraciones", "Head Manager", "Tienda", "Dueño"],
   },
   {
+    server: "KaosMC",
+    role: "Head Manager",
+    period: "2026 - Ahora",
+    isPromotion: true,
+    description: "Servidor activo donde me ocupo de la tienda Tebex, la gestión del Discord y configuraciones de Minecraft.",
+    achievements: [
+      "Gestión y configuración de la tienda Tebex.",
+      "Administración del servidor de Discord.",
+      "Configuración de plugins de Minecraft.",
+      "Coordinación del equipo de Staff.",
+    ],
+    tags: ["Head Manager", "Tebex", "Discord", "Plugins", "Staff"],
+  },
+  {
     server: "VaperMC Network",
     role: "Manager",
     period: "Diciembre 2025 - Febrero 2026",
@@ -212,7 +226,7 @@ function ExpCard({ exp, index }: { exp: ExperienceItem; index: number }) {
                 onClick={() => setExpanded(!expanded)}
                 className="text-xs font-mono text-green-600 hover:text-green-800 flex items-center gap-1 transition-colors"
               >
-                {expanded ? "▲ ocultar" : "▼ ver logros"}
+                {expanded ? "ocultar" : "ver logros"}
               </button>
             </div>
           </div>
