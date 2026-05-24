@@ -1,39 +1,40 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, type MouseEvent, type ReactNode } from "react";
 
 interface AnimatedButtonProps {
   label: string;
   onClick?: () => void;
   variant?: "primary" | "secondary";
-  icon?: React.ReactNode;
+  icon?: ReactNode;
 }
 
 export function AnimatedButton({
   label,
   onClick,
   variant = "primary",
-  icon
+  icon,
 }: AnimatedButtonProps) {
   const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number }>>([]);
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
     const newRipple = { id: Date.now(), x, y };
-    setRipples(prev => [...prev, newRipple]);
+    setRipples((prev) => [...prev, newRipple]);
 
     setTimeout(() => {
-      setRipples(prev => prev.filter(r => r.id !== newRipple.id));
+      setRipples((prev) => prev.filter((r) => r.id !== newRipple.id));
     }, 600);
 
     onClick?.();
   };
 
-  const bgColor = variant === "primary"
-    ? "bg-green-500 hover:bg-green-600 text-white"
-    : "bg-white text-green-700 border-2 border-green-300 hover:bg-green-50";
+  const bgColor =
+    variant === "primary"
+      ? "bg-green-500 hover:bg-green-600 text-white"
+      : "bg-white dark:bg-card text-green-700 dark:text-green-400 border-2 border-green-300 dark:border-green-700 hover:bg-green-50 dark:hover:bg-green-900/20";
 
   return (
     <motion.button
@@ -42,7 +43,7 @@ export function AnimatedButton({
       whileTap={{ scale: 0.95 }}
       className={`relative overflow-hidden px-6 py-3 rounded-xl font-semibold transition-colors flex items-center gap-2 ${bgColor}`}
     >
-      {ripples.map(ripple => (
+      {ripples.map((ripple) => (
         <motion.span
           key={ripple.id}
           initial={{ scale: 0, opacity: 0.7 }}

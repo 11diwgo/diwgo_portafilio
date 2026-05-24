@@ -16,14 +16,13 @@ export function Counter({
   duration = 2,
   suffix = "",
   prefix = "",
-  className = ""
+  className = "",
 }: CounterProps) {
   const [count, setCount] = useState(from);
 
   useEffect(() => {
     let start = from;
     const increment = (to - from) / (duration * 60);
-    let frameId: NodeJS.Timeout;
 
     const timer = setInterval(() => {
       start += increment;

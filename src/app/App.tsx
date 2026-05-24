@@ -1,58 +1,50 @@
-import { useState } from "react";
+import { ClickParticles } from "./components/ClickParticles";
+import { ScrollProgressBar } from "./components/ScrollProgressBar";
 import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Hero } from "./components/Hero";
+import { Skills } from "./components/Skills";
 import { Experience } from "./components/Experience";
 import { Testimonials } from "./components/Testimonials";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
-import { Skills } from "./components/Skills";
-import { Navbar, type Section } from "./components/Navbar";
+import { Navbar } from "./components/Navbar";
 import { DiscordToast } from "./components/DiscordToast";
 import { PageTransition } from "./components/PageTransition";
+
+type Section = "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<Section>("inicio");
 
-  const handleNavigate = (section: Section) => {
-    setActiveSection(section);
-    // Scroll suave al top (opcional)
-    // window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <div className="min-h-screen" style={{ background: "#d8eedf" }}>
-      {/* Navbar siempre visible */}
-      <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
-
-      {/* Toast Discord rotatorio */}
+    <div className="min-h-screen bg-background">
+      <ScrollProgressBar />
+      <ClickParticles />
       <DiscordToast />
+      <Navbar activeSection={activeSection} onNavigate={setActiveSection} />
 
-      {/* Secciones con transiciones suaves */}
       <AnimatePresence mode="wait">
         {activeSection === "inicio" && (
           <PageTransition id="inicio">
-            <Hero onNavigate={handleNavigate} />
+            <Hero onNavigate={setActiveSection} />
           </PageTransition>
         )}
-
         {activeSection === "experiencia" && (
           <PageTransition id="experiencia">
             <Experience />
           </PageTransition>
         )}
-
         {activeSection === "conocimientos" && (
           <PageTransition id="conocimientos">
             <Skills />
           </PageTransition>
         )}
-
         {activeSection === "testimonios" && (
           <PageTransition id="testimonios">
             <Testimonials />
           </PageTransition>
         )}
-
         {activeSection === "contacto" && (
           <PageTransition id="contacto">
             <Contact />
@@ -60,7 +52,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Footer siempre visible */}
       <Footer />
     </div>
   );

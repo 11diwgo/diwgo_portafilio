@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap');
-
 @custom-variant dark (&:is(.dark *));
 
 :root {
   --font-size: 16px;
 
-  /* === NUEVA PALETA LIGHT + GREEN CODER === */
   --background: #d8eedf;
   --foreground: #052e16;
   --card: #f2faf4;
@@ -31,7 +28,6 @@
   --ring: #22c55e;
   --radius: 0.75rem;
 
-  /* Custom coder vars */
   --green-neon: #22c55e;
   --green-bright: #4ade80;
   --green-glow: rgba(34, 197, 94, 0.3);
@@ -39,6 +35,42 @@
   --code-bg: #f8fafc;
   --code-border: #d1fae5;
   --terminal-bg: #0d1117;
+  --terminal-green: #39ff14;
+}
+
+.dark {
+  --background: #0d1a12;
+  --foreground: #d8eedf;
+  --card: #122018;
+  --card-foreground: #d8eedf;
+  --popover: #1a2e20;
+  --popover-foreground: #d8eedf;
+  --primary: #22c55e;
+  --primary-foreground: #052e16;
+  --secondary: #1a3024;
+  --secondary-foreground: #d8eedf;
+  --muted: #1a3024;
+  --muted-foreground: #86efac;
+  --accent: #166534;
+  --accent-foreground: #d8eedf;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #1e3a28;
+  --input: #1a2e20;
+  --input-background: #1a2e20;
+  --switch-background: #166534;
+  --font-weight-medium: 600;
+  --font-weight-normal: 400;
+  --ring: #22c55e;
+  --radius: 0.75rem;
+
+  --green-neon: #22c55e;
+  --green-bright: #4ade80;
+  --green-glow: rgba(34, 197, 94, 0.3);
+  --green-glow-strong: rgba(34, 197, 94, 0.5);
+  --code-bg: #0a0f0c;
+  --code-border: #1e3a28;
+  --terminal-bg: #010409;
   --terminal-green: #39ff14;
 }
 
@@ -78,8 +110,10 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Syne', sans-serif;
-    background-color: #d0ebd7;
+    background-color: var(--background);
     overflow-x: hidden;
+    /* Smooth dark mode transitions */
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   html {
@@ -97,12 +131,11 @@
     font-family: 'JetBrains Mono', monospace;
   }
 
-  /* === CUSTOM SCROLLBAR === */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #d8eedf;
+    background: var(--background);
   }
   ::-webkit-scrollbar-thumb {
     background: #22c55e;
@@ -112,7 +145,6 @@
     background: #16a34a;
   }
 
-  /* === GLOW UTILITIES === */
   .glow-green {
     box-shadow: 0 0 20px var(--green-glow), 0 0 40px var(--green-glow);
   }
@@ -120,7 +152,6 @@
     text-shadow: 0 0 10px var(--green-glow-strong), 0 0 20px var(--green-glow);
   }
 
-  /* === ANIMATIONS === */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -180,19 +211,21 @@
     100% { clip-path: inset(0 0 0 0); transform: translate(0, 0); }
   }
 
-  .animate-fade-up { animation: fadeInUp 0.6s ease both; }
-  .animate-fade-left { animation: fadeInLeft 0.6s ease both; }
+  .animate-fade-up    { animation: fadeInUp 0.6s ease both; }
+  .animate-fade-left  { animation: fadeInLeft 0.6s ease both; }
   .animate-fade-right { animation: fadeInRight 0.6s ease both; }
-  .animate-blink { animation: blink 1s step-end infinite; }
-  .animate-float { animation: float 4s ease-in-out infinite; }
+  .animate-blink      { animation: blink 1s step-end infinite; }
+  .animate-float      { animation: float 4s ease-in-out infinite; }
   .animate-pulse-green { animation: pulse-green 2s infinite; }
-  .animate-spin-slow { animation: spin-slow 8s linear infinite; }
+  .animate-spin-slow  { animation: spin-slow 8s linear infinite; }
   .animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
 
-  /* === CARD HOVER EFFECT === */
   .card-hover {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid #bbf7d0;
+  }
+  .dark .card-hover {
+    border-color: var(--border);
   }
   .card-hover:hover {
     border-color: #22c55e;
@@ -200,7 +233,6 @@
     transform: translateY(-4px);
   }
 
-  /* === CODE BLOCK STYLE === */
   .code-block {
     font-family: 'JetBrains Mono', monospace;
     background: #0d1117;
@@ -218,11 +250,11 @@
     padding-right: 1rem;
     border-right: 1px solid #21262d;
   }
-  .token-keyword   { color: #ff7b72; }
-  .token-string    { color: #a5d6ff; }
-  .token-var       { color: #ffa657; }
-  .token-func      { color: #d2a8ff; }
-  .token-comment   { color: #8b949e; font-style: italic; }
-  .token-green     { color: #7ee787; }
-  .token-number    { color: #79c0ff; }
+  .token-keyword  { color: #ff7b72; }
+  .token-string   { color: #a5d6ff; }
+  .token-var      { color: #ffa657; }
+  .token-func     { color: #d2a8ff; }
+  .token-comment  { color: #8b949e; font-style: italic; }
+  .token-green    { color: #7ee787; }
+  .token-number   { color: #79c0ff; }
 }
