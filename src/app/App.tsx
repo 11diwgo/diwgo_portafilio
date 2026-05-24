@@ -11,8 +11,9 @@ import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { DiscordToast } from "./components/DiscordToast";
 import { PageTransition } from "./components/PageTransition";
+import { Multimedia } from "./components/Multimedia";
 
-type Section = "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto";
+type Section = "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto" | "multimedia";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<Section>("inicio");
@@ -43,6 +44,11 @@ export default function App() {
         {activeSection === "testimonios" && (
           <PageTransition id="testimonios">
             <Testimonials />
+          </PageTransition>
+        )}
+        {activeSection === "multimedia" && (
+          <PageTransition id="multimedia">
+            <Multimedia />
           </PageTransition>
         )}
         {activeSection === "contacto" && (

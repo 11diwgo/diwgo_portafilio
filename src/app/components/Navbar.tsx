@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, type ReactNode } from "react";
-import { Home, Briefcase, User, Star, Mail, Terminal } from "lucide-react";
+import { Home, Briefcase, User, Star, Mail, Images } from "lucide-react";
 import { DarkModeToggle } from "./DarkModeToggle";
 
-export type Section = "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto";
+export type Section = "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto" | "multimedia";
 
 interface NavbarProps {
   activeSection: Section;
@@ -10,11 +10,12 @@ interface NavbarProps {
 }
 
 const navItems: { id: Section; label: string; icon: ReactNode }[] = [
-  { id: "inicio",        label: "~/inicio",   icon: <Home      className="w-4 h-4" /> },
-  { id: "experiencia",   label: "~/exp",      icon: <Briefcase className="w-4 h-4" /> },
-  { id: "conocimientos", label: "~/sobre-mi", icon: <User      className="w-4 h-4" /> },
-  { id: "testimonios",   label: "~/reviews",  icon: <Star      className="w-4 h-4" /> },
-  { id: "contacto",      label: "~/contacto", icon: <Mail      className="w-4 h-4" /> },
+  { id: "inicio",        label: "~/inicio",     icon: <Home      className="w-4 h-4" /> },
+  { id: "experiencia",   label: "~/exp",        icon: <Briefcase className="w-4 h-4" /> },
+  { id: "conocimientos", label: "~/sobre-mi",   icon: <User      className="w-4 h-4" /> },
+  { id: "testimonios",   label: "~/reviews",    icon: <Star      className="w-4 h-4" /> },
+  { id: "multimedia",    label: "~/multimedia", icon: <Images    className="w-4 h-4" /> },
+  { id: "contacto",      label: "~/contacto",   icon: <Mail      className="w-4 h-4" /> },
 ];
 
 export function Navbar({ activeSection, onNavigate }: NavbarProps) {
@@ -65,7 +66,7 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
               className="relative w-8 h-8 rounded-lg bg-green-500 flex items-center justify-center overflow-hidden group-hover:scale-110 transition-transform duration-300"
               style={{ boxShadow: "0 0 15px rgba(34,197,94,0.5)" }}
             >
-              <Terminal className="w-4 h-4 text-white" />
+              <span className="text-white text-xs font-bold select-none">▶</span>
               <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
             <span className="font-bold text-green-700 dark:text-green-400 text-sm tracking-tight">
@@ -126,7 +127,7 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
         </div>
 
         {/* Mobile dropdown */}
-        <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ${mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="px-4 pb-4 flex flex-col gap-1">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
