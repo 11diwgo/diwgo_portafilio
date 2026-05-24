@@ -186,6 +186,7 @@ function EmptyState({ category }: { category: MediaCategory }) {
 // ─── Main ────────────────────────────────────────────────────────────────────
 export function Multimedia() {
   const [activeTab, setActiveTab] = useState(MULTIMEDIA_CATEGORIES[0].id);
+  const [direction, setDirection] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const [headerVisible, setHeaderVisible] = useState(false);
@@ -257,7 +258,12 @@ export function Multimedia() {
               return (
                 <button
                   key={cat.id}
-                  onClick={() => setActiveTab(cat.id)}
+                  onClick={() => {
+                    const oldIdx = MULTIMEDIA_CATEGORIES.findIndex((c) => c.id === activeTab);
+                    const newIdx = MULTIMEDIA_CATEGORIES.findIndex((c) => c.id === cat.id);
+                    setDirection(newIdx > oldIdx ? 1 : -1);
+                    setActiveTab(cat.id);
+                  }}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all duration-200 border ${
                     isActive
                       ? "bg-green-500 text-white border-green-500 shadow-lg shadow-green-500/30 font-bold"
@@ -283,13 +289,20 @@ export function Multimedia() {
           </div>
 
           {/* Gallery */}
-          <AnimatePresence mode="wait">
+          <div className="overflow-hidden">
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
+              custom={direction}
+              variants={{
+                enter: (d: number) => ({ opacity: 0, x: d * 40, filter: "blur(4px)" }),
+                center: { opacity: 1, x: 0, filter: "blur(0px)" },
+                exit: (d: number) => ({ opacity: 0, x: d * -40, filter: "blur(4px)" }),
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             >
               {currentCategory.items.length === 0 ? (
                 <EmptyState category={currentCategory} />
@@ -308,6 +321,7 @@ export function Multimedia() {
               )}
             </motion.div>
           </AnimatePresence>
+          </div>
 
         </div>
       </div>
