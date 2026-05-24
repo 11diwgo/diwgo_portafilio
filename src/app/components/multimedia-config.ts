@@ -30,7 +30,14 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
     items: [
       // Añade tus imágenes aquí:
        { file: "holo1.png", caption: "Holograma menú recompensas" },
-      // { file: "holo2.jpg", caption: "Holograma de arena" },
+       { file: "holo2.png", caption: "Holograma de bienvenida" },
+       { file: "holo3.png", caption: "Holograma de información de mina" },
+       { file: "holo4.png", caption: "Holograma de crates" },
+       { file: "holo5.png", caption: "Holograma de información de warp" },
+       { file: "holo6.png", caption: "Holograma de minas (boxpvp)" },
+       { file: "holo7.png", caption: "Holograma de estdística del servidor (TOP)" },
+       { file: "holo8.png", caption: "Holograma de información de PvP" },
+       { file: "holo9.png", caption: "Holograma de información de Room (BoxPvP)" },
     ],
   },
   {
