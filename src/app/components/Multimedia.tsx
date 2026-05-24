@@ -280,7 +280,6 @@ export function Multimedia() {
                 : "bg-white dark:bg-gray-900 text-green-700 dark:text-green-400 border-green-100 dark:border-gray-800 hover:border-green-400/50"
             }`}
           >
-            <span>{cat.icon}</span>
             <span>{cat.label}</span>
             {cat.items.length > 0 && (
               <span
