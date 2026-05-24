@@ -50,6 +50,7 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
     folder: "menus",
     items: [
        { file: "menu1.png", caption: "Menú de modalidades" },
+       { file: "menu2.png", caption: "Menú de warps del servidor" },
     ],
   },
   {
