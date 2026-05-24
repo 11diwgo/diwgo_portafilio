@@ -39,6 +39,8 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
        { file: "holo8.png", caption: "Holograma de información de PvP" },
        { file: "holo9.png", caption: "Holograma de información de Room (BoxPvP)" },
        { file: "holo10.png", caption: "Holograma de información de modalidad" },
+       { file: "holo11.png", caption: "Holograma de Discord" },
+       { file: "holo12.png", caption: "Holograma de Tienda" },
     ],
   },
   {
