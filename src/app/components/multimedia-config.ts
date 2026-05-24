@@ -69,6 +69,7 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
     folder: "otros",
     items: [
        { file: "otros1.png", caption: "Lore de BoxPvP" },
+       { file: "otros2.png", caption: "Mensajes de chat automáticos" },
     ],
   },
 ];
