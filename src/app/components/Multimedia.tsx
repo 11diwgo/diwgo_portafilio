@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MULTIMEDIA_CATEGORIES, type MediaItem } from "./multimedia-config";
@@ -6,10 +6,11 @@ import { MULTIMEDIA_CATEGORIES, type MediaItem } from "./multimedia-config";
 interface GalleryCardProps {
   item: MediaItem;
   index: number;
+  folder: string;
   onClick: () => void;
 }
 
-const GalleryCard: React.FC<GalleryCardProps> = ({ item, index, onClick }) => {
+const GalleryCard: React.FC<GalleryCardProps> = ({ item, index, folder, onClick }) => {
   const [hovered, setHovered] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -44,7 +45,7 @@ const GalleryCard: React.FC<GalleryCardProps> = ({ item, index, onClick }) => {
       {/* Imagen con transición opacity */}
       <div className="relative h-40 overflow-hidden bg-black/5">
         <img
-          src={`/portfolio/${item.file}`}
+          src={`/multimedia/${folder}/${item.file}`}
           alt={item.caption || "Imagen multimedia"}
           className={`w-full h-full object-cover transition-opacity duration-500 ${
             loaded ? "opacity-100" : "opacity-0"
@@ -94,6 +95,7 @@ interface LightboxProps {
   isOpen: boolean;
   currentIndex: number;
   items: MediaItem[];
+  folder: string;
   onClose: () => void;
   onNavigate: (index: number) => void;
 }
@@ -102,6 +104,7 @@ const Lightbox: React.FC<LightboxProps> = ({
   isOpen,
   currentIndex,
   items,
+  folder,
   onClose,
   onNavigate,
 }) => {
@@ -156,7 +159,7 @@ const Lightbox: React.FC<LightboxProps> = ({
           exit={{ scale: 0.9, opacity: 0 }}
         >
           <img
-            src={`/portfolio/${currentItem.file}`}
+            src={`/multimedia/${folder}/${currentItem.file}`}
             alt={currentItem.caption}
             className="w-full h-full object-contain rounded-lg"
           />
@@ -402,6 +405,7 @@ export const Multimedia: React.FC = () => {
                 key={`${activeCategoryIndex}-${index}`}
                 item={item}
                 index={index}
+                folder={currentCategory.folder}
                 onClick={() => handleImageClick(index)}
               />
             ))}
@@ -427,6 +431,7 @@ export const Multimedia: React.FC = () => {
         isOpen={lightboxOpen}
         currentIndex={lightboxIndex}
         items={currentCategory.items}
+        folder={currentCategory.folder}
         onClose={() => setLightboxOpen(false)}
         onNavigate={handleLightboxNavigate}
       />
