@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Image } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MULTIMEDIA_CATEGORIES, type MediaItem } from "./multimedia-config";
 
@@ -320,16 +320,35 @@ export const Multimedia: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={headerVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Multimedia
+          <div
+            className="inline-flex items-center gap-2 bg-card text-green-400 px-4 py-2 rounded-full mb-6 border border-border"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            <Image className="w-3.5 h-3.5" />
+            <span className="text-xs">multimedia --cat={totalCategories} --items={totalItems}</span>
+          </div>
+          <h2
+            className="text-5xl md:text-6xl font-black text-foreground mb-4"
+            style={{ fontFamily: "'Syne', sans-serif" }}
+          >
+            Trabajos{" "}
+            <span
+              className="text-transparent"
+              style={{
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                backgroundImage: "linear-gradient(135deg, #16a34a, #22c55e, #4ade80)",
+                backgroundSize: "200% auto",
+                animation: "shimmer 3s linear infinite",
+              }}
+            >
+              visuales
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground mb-2">
-            Configuración visual para servidores de Minecraft.
-          </p>
-          <p className="font-mono text-xs text-green-500/70">
-            {totalItems} trabajos · {totalCategories} categorías
+          <p className="text-muted-foreground text-lg">
+            Menús, hologramas, tabs y más para servidores de Minecraft.
           </p>
         </motion.div>
 
