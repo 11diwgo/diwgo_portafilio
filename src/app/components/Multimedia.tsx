@@ -39,11 +39,11 @@ const GalleryCard: React.FC<GalleryCardProps> = ({ item, index, folder, onClick 
     >
       {/* Skeleton de carga */}
       {!loaded && (
-        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse h-40" />
+        <div className="absolute inset-0 bg-accent animate-pulse h-52" />
       )}
 
       {/* Imagen con transición opacity */}
-      <div className="relative h-40 overflow-hidden bg-black/5">
+      <div className="relative h-52 overflow-hidden bg-black/5">
         <img
           src={`/multimedia/${folder}/${item.file}`}
           alt={item.caption || "Imagen multimedia"}
@@ -189,7 +189,7 @@ const Lightbox: React.FC<LightboxProps> = ({
             initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.2 }}
-            className="w-full md:w-64 flex-shrink-0 flex flex-col gap-4 p-6 border-t md:border-t-0 md:border-l border-border"
+            className="w-full md:w-64 flex-shrink-0 flex flex-col gap-4 p-6 border-t-2 md:border-t-0 md:border-l border-border mt-2 md:mt-0"
           >
             <div>
               <p className="text-[10px] font-mono text-green-500/60 mb-1">DESCRIPCIÓN</p>
@@ -363,10 +363,10 @@ export const Multimedia: React.FC = () => {
             <button
               key={index}
               onClick={() => handleCategoryChange(index)}
-              className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap border ${
                 activeCategoryIndex === index
-                  ? "bg-green-500 text-white shadow-lg shadow-green-500/30"
-                  : "bg-card text-foreground border border-border hover:border-green-500/50 hover:bg-accent"
+                  ? "bg-green-500 text-white border-green-500 shadow-lg shadow-green-500/30"
+                  : "bg-card text-foreground border-border hover:border-green-500/50 hover:bg-accent"
               }`}
             >
               {category.name}

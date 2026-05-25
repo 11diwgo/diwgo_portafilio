@@ -250,7 +250,7 @@ export function Experience() {
             style={{ opacity: headerVisible ? 1 : 0, transform: headerVisible ? "none" : "translateY(24px)" }}
           >
             <div
-              className="inline-flex items-center gap-2 bg-gray-900 text-green-400 px-4 py-2 rounded-full mb-6 border border-gray-700"
+              className="inline-flex items-center gap-2 bg-card text-green-400 px-4 py-2 rounded-full mb-6 border border-border"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               <span className="text-xs">git log --oneline --author="diwgo"</span>

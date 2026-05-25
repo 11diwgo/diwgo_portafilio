@@ -291,7 +291,7 @@ export function Skills() {
             style={{ opacity: headerVisible ? 1 : 0, transform: headerVisible ? "none" : "translateY(24px)" }}
           >
             <motion.div
-              className="inline-flex items-center gap-2 bg-gray-900 text-green-400 px-4 py-2 rounded-full mb-6 border border-gray-700"
+              className="inline-flex items-center gap-2 bg-card text-green-400 px-4 py-2 rounded-full mb-6 border border-border"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={headerVisible ? { opacity: 1, scale: 1 } : {}}
