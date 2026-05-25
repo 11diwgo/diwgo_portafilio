@@ -11,6 +11,7 @@
 export interface MediaItem {
   file: string;       // nombre del archivo (ej: "holo1.png")
   caption?: string;   // descripción opcional
+  tags?: string[];    // etiquetas para filtrar (ej: ["lobby", "boxpvp"])
 }
 
 export interface MediaCategory {
@@ -29,19 +30,19 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
     folder: "hologramas",
     items: [
       // Añade tus imágenes aquí:
-       { file: "holo1.png", caption: "Holograma menú recompensas" },
-       { file: "holo2.png", caption: "Holograma de bienvenida" },
-       { file: "holo3.png", caption: "Holograma de información de mina" },
-       { file: "holo4.png", caption: "Holograma de crates" },
-       { file: "holo5.png", caption: "Holograma de información de warp" },
-       { file: "holo6.png", caption: "Holograma de minas (boxpvp)" },
-       { file: "holo7.png", caption: "Holograma de estdística del servidor (TOP)" },
-       { file: "holo8.png", caption: "Holograma de información de PvP" },
-       { file: "holo9.png", caption: "Holograma de información de Room (BoxPvP)" },
-       { file: "holo10.png", caption: "Holograma de información de modalidad" },
-       { file: "holo11.png", caption: "Holograma de Discord" },
-       { file: "holo12.png", caption: "Holograma de Tienda" },
-       { file: "holo13.png", caption: "Holograma de bienvenida" },
+       { file: "holo1.png", caption: "Holograma menú recompensas", tags: ["lobby"] },
+       { file: "holo2.png", caption: "Holograma de bienvenida", tags: ["lobby"] },
+       { file: "holo3.png", caption: "Holograma de información de mina", tags: ["survival"] },
+       { file: "holo4.png", caption: "Holograma de crates", tags: ["crates"] },
+       { file: "holo5.png", caption: "Holograma de información de warp", tags: ["lobby"] },
+       { file: "holo6.png", caption: "Holograma de minas (boxpvp)", tags: ["boxpvp"] },
+       { file: "holo7.png", caption: "Holograma de estdística del servidor (TOP)", tags: ["lobby"] },
+       { file: "holo8.png", caption: "Holograma de información de PvP", tags: ["pvp"] },
+       { file: "holo9.png", caption: "Holograma de información de Room (BoxPvP)", tags: ["boxpvp"] },
+       { file: "holo10.png", caption: "Holograma de información de modalidad", tags: ["lobby"] },
+       { file: "holo11.png", caption: "Holograma de Discord", tags: ["discord"] },
+       { file: "holo12.png", caption: "Holograma de Tienda", tags: ["tienda"] },
+       { file: "holo13.png", caption: "Holograma de bienvenida", tags: ["lobby"] },
     ],
   },
   {
@@ -50,11 +51,11 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
     icon: "☰",
     folder: "menus",
     items: [
-       { file: "menu1.png", caption: "Menú de modalidades" },
-       { file: "menu2.gif", caption: "Menú de warps del servidor" },
-       { file: "menu3.gif", caption: "Menú principal de una modalidad" },
-       { file: "menu4.gif", caption: "Menú de kits" },
-       { file: "menu5.gif", caption: "Menú de protecciones (Survival)" },
+       { file: "menu1.png", caption: "Menú de modalidades", tags: ["lobby"] },
+       { file: "menu2.gif", caption: "Menú de warps del servidor", tags: ["warps"] },
+       { file: "menu3.gif", caption: "Menú principal de una modalidad", tags: ["survival"] },
+       { file: "menu4.gif", caption: "Menú de kits", tags: ["kits"] },
+       { file: "menu5.gif", caption: "Menú de protecciones (Survival)", tags: ["survival"] },
     ],
   },
   {
@@ -63,8 +64,8 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
     icon: "▤",
     folder: "scoreboards",
     items: [
-      { file: "tab1.png", caption: "Tab de lobby" },
-      { file: "sc1.png", caption: "Scoreboard de lobby" },
+      { file: "tab1.png", caption: "Tab de lobby", tags: ["lobby"] },
+      { file: "sc1.png", caption: "Scoreboard de lobby", tags: ["lobby"] },
     ],
   },
   {
@@ -73,8 +74,8 @@ export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
     icon: "✦",
     folder: "otros",
     items: [
-       { file: "otros1.png", caption: "Lore de BoxPvP" },
-       { file: "otros2.png", caption: "Mensajes de chat automáticos" },
+       { file: "otros1.png", caption: "Lore de BoxPvP", tags: ["boxpvp"] },
+       { file: "otros2.png", caption: "Mensajes de chat automáticos", tags: ["chat"] },
     ],
   },
 ];

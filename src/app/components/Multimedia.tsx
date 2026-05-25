@@ -1,344 +1,489 @@
-import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { X, ZoomIn, ChevronLeft, ChevronRight, ImageOff } from "lucide-react";
-import { MULTIMEDIA_CATEGORIES, type MediaCategory, type MediaItem } from "./multimedia-config";
+"use client";
 
-// ─── Lightbox ────────────────────────────────────────────────────────────────
-interface LightboxProps {
-  items: MediaItem[];
-  folder: string;
+import { useEffect, useState, useRef, useCallback } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown, ChevronUp, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { MULTIMEDIA_CATEGORIES, type MediaItem } from "./multimedia-config";
+
+interface GalleryCardProps {
+  item: MediaItem;
   index: number;
-  onClose: () => void;
-  onPrev: () => void;
-  onNext: () => void;
+  onClick: () => void;
 }
 
-function Lightbox({ items, folder, index, onClose, onPrev, onNext }: LightboxProps) {
-  const item = items[index];
-  const src = `/multimedia/${folder}/${item.file}`;
+const GalleryCard = ({ item, index, onClick }: GalleryCardProps) => {
+  const [hovered, setHovered] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") onPrev();
-      if (e.key === "ArrowRight") onNext();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose, onPrev, onNext]);
+  const fileExtension = item.file.split(".").pop()?.toUpperCase() || "FILE";
+
+  const getBadgeColor = (ext: string) => {
+    if (ext === "GIF") return "bg-purple-500/80";
+    if (ext === "PNG") return "bg-green-600/80";
+    if (ext === "JPG" || ext === "JPEG") return "bg-blue-500/80";
+    return "bg-gray-600/80";
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
-      onClick={onClose}
+      layout
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.2 }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={onClick}
+      className="relative cursor-zoom-in group"
+      style={{
+        boxShadow: hovered
+          ? "0 0 0 2px #22c55e, 0 0 20px 0 rgba(34, 197, 94, 0.25)"
+          : "none",
+        transition: "box-shadow 300ms ease-out",
+      }}
     >
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-gray-900/80 border border-green-500/30 text-green-400 hover:text-white hover:border-green-400 transition-all"
-      >
-        <X className="w-5 h-5" />
-      </button>
-
-      {items.length > 1 && (
-        <button
-          onClick={(e) => { e.stopPropagation(); onPrev(); }}
-          className="absolute left-4 p-2 rounded-full bg-gray-900/80 border border-green-500/30 text-green-400 hover:text-white hover:border-green-400 transition-all"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-      )}
-
+      {/* Item index badge - top left */}
       <motion.div
-        key={index}
-        initial={{ scale: 0.92, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.92, opacity: 0 }}
-        transition={{ duration: 0.2 }}
-        className="relative max-w-[90vw] max-h-[85vh] flex flex-col items-center gap-3"
-        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+        className="absolute top-2 left-2 z-10 bg-black/40 text-green-400/70 text-[10px] font-mono px-1.5 py-0.5 rounded"
       >
-        <img
-          src={src}
-          alt={item.caption ?? item.file}
-          className="max-w-full max-h-[80vh] object-contain rounded-2xl border border-green-500/20 shadow-2xl"
-        />
-        {item.caption && (
-          <p className="text-sm text-green-400 font-mono text-center">
-            // {item.caption}
-          </p>
-        )}
-        <p className="text-xs text-gray-600 font-mono">{index + 1} / {items.length}</p>
+        #{String(index + 1).padStart(2, "0")}
       </motion.div>
 
-      {items.length > 1 && (
-        <button
-          onClick={(e) => { e.stopPropagation(); onNext(); }}
-          className="absolute right-4 p-2 rounded-full bg-gray-900/80 border border-green-500/30 text-green-400 hover:text-white hover:border-green-400 transition-all"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
+      {/* Format badge - top right */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.15 }}
+        className={`absolute top-2 right-2 z-10 text-white text-[9px] font-mono tracking-widest px-1.5 py-0.5 rounded ${getBadgeColor(
+          fileExtension
+        )}`}
+      >
+        {fileExtension}
+      </motion.div>
+
+      {/* Skeleton loader */}
+      <div
+        className="relative w-full h-40 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden"
+      >
+        {!loaded && (
+          <motion.div
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent"
+          />
+        )}
+
+        {/* Image with fade-in transition */}
+        <motion.img
+          src={`/multimedia/${item.file}`}
+          alt={item.caption || "Gallery item"}
+          className="w-full h-full object-cover rounded-lg"
+          style={{
+            opacity: loaded ? 1 : 0,
+          }}
+          transition={{ opacity: { duration: 0.5 } }}
+          onLoad={() => setLoaded(true)}
+        />
+      </div>
+
+      {/* Caption */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300 line-clamp-2"
+      >
+        {item.caption || "Sin descripción"}
+      </motion.p>
+
+      {/* Hover effect overlay */}
+      {hovered && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="absolute inset-0 bg-black/20 rounded-lg pointer-events-none"
+        />
       )}
     </motion.div>
   );
+};
+
+interface LightboxProps {
+  items: MediaItem[];
+  initialIndex: number;
+  onClose: () => void;
+  onNavigate: (newIndex: number) => void;
 }
 
-// ─── Gallery Card ─────────────────────────────────────────────────────────────
-interface GalleryCardProps {
-  item: MediaItem;
-  folder: string;
-  index: number;
-  onOpen: (index: number) => void;
-}
+const Lightbox = ({
+  items,
+  initialIndex,
+  onClose,
+  onNavigate,
+}: LightboxProps) => {
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-function GalleryCard({ item, folder, index, onOpen }: GalleryCardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [error, setError] = useState(false);
-  const src = `/multimedia/${folder}/${item.file}`;
+  const handlePrevious = useCallback(() => {
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+    onNavigate(currentIndex === 0 ? items.length - 1 : currentIndex - 1);
+  }, [currentIndex, items.length, onNavigate]);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+    onNavigate(currentIndex === items.length - 1 ? 0 : currentIndex + 1);
+  }, [currentIndex, items.length, onNavigate]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") handlePrevious();
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handlePrevious, handleNext, onClose]);
+
+  const currentItem = items[currentIndex];
+  const fileExtension =
+    currentItem.file.split(".").pop()?.toUpperCase() || "FILE";
 
   return (
-    <div
-      ref={ref}
-      className="break-inside-avoid mb-3 transition-all duration-700"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "none" : "translateY(20px)",
-        transitionDelay: `${(index % 8) * 60}ms`,
-      }}
-    >
-      <div
-        className="relative group cursor-zoom-in rounded-2xl overflow-hidden border border-green-200 dark:border-border bg-green-50/80 dark:bg-card card-hover"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        onClick={() => onOpen(index)}
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={onClose}
+        className="fixed inset-0 z-50 flex items-center justify-center"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
+          backgroundColor: "rgba(0, 0, 0, 0.9)",
+        }}
       >
-        {error ? (
-          <div className="flex flex-col items-center justify-center h-40 gap-2 text-gray-400 dark:text-muted-foreground">
-            <ImageOff className="w-8 h-8" />
-            <span className="text-xs font-mono">{item.file}</span>
-          </div>
-        ) : (
-          <img
-            src={src}
-            alt={item.caption ?? item.file}
-            onError={() => setError(true)}
-            className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
-          />
-        )}
+        {/* Close button */}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={onClose}
+          className="absolute top-4 right-4 z-50 text-white hover:text-green-400 transition-colors"
+          aria-label="Close lightbox"
+        >
+          <X size={24} />
+        </motion.button>
 
-        <AnimatePresence>
-          {hovered && !error && (
+        {/* Main content */}
+        <motion.div
+          onClick={(e) => e.stopPropagation()}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.3 }}
+          className="relative max-w-4xl max-h-[90vh] w-full mx-4"
+        >
+          {/* Image */}
+          <div className="relative bg-black rounded-lg overflow-hidden">
+            <motion.img
+              key={currentIndex}
+              src={`/multimedia/${currentItem.file}`}
+              alt={currentItem.caption || "Gallery item"}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="w-full h-auto max-h-[80vh] object-contain"
+            />
+
+            {/* Format badge in lightbox */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center gap-2"
+              transition={{ delay: 0.1 }}
+              className="absolute top-4 right-4 bg-black/60 text-white text-xs font-mono tracking-widest px-2 py-1 rounded"
             >
-              <ZoomIn className="w-6 h-6 text-green-400" />
-              {item.caption && (
-                <p className="text-white text-xs font-mono px-3 text-center">
-                  // {item.caption}
-                </p>
-              )}
+              {fileExtension}
             </motion.div>
+
+            {/* Counter */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15 }}
+              className="absolute bottom-4 right-4 bg-black/60 text-green-400 text-xs font-mono px-3 py-1 rounded"
+            >
+              {currentIndex + 1} / {items.length}
+            </motion.div>
+          </div>
+
+          {/* Caption */}
+          {currentItem.caption && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 text-center text-gray-200 text-sm font-medium"
+            >
+              {currentItem.caption}
+            </motion.p>
           )}
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-}
 
-// ─── Empty State ─────────────────────────────────────────────────────────────
-function EmptyState({ category }: { category: MediaCategory }) {
-  return (
-    <div className="flex flex-col items-center justify-center py-24 gap-4 text-center">
-      <div className="w-14 h-14 rounded-2xl bg-green-50 dark:bg-muted border border-green-200 dark:border-border flex items-center justify-center">
-        <ImageOff className="w-6 h-6 text-green-400 dark:text-green-600" />
-      </div>
-      <div>
-        <p className="text-sm font-mono text-green-600 dark:text-green-400 mb-1">
-          // carpeta_vacía
-        </p>
-        <p className="text-xs font-mono text-gray-400 dark:text-muted-foreground">
-          Añade imágenes en{" "}
-          <span className="text-green-600 dark:text-green-400">
-            public/multimedia/{category.folder}/
-          </span>
-        </p>
-      </div>
-    </div>
-  );
-}
+          {/* Navigation buttons */}
+          <motion.button
+            whileHover={{ scale: 1.1, x: -4 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handlePrevious}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-green-400 transition-colors"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={32} />
+          </motion.button>
 
-// ─── Main ────────────────────────────────────────────────────────────────────
-export function Multimedia() {
-  const [activeTab, setActiveTab] = useState(MULTIMEDIA_CATEGORIES[0].id);
-  const [direction, setDirection] = useState(0);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
+          <motion.button
+            whileHover={{ scale: 1.1, x: 4 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleNext}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-green-400 transition-colors"
+            aria-label="Next image"
+          >
+            <ChevronRight size={32} />
+          </motion.button>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
+export default function Multimedia() {
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedTag, setSelectedTag] = useState("Todos");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const [headerVisible, setHeaderVisible] = useState(false);
+  const [direction, setDirection] = useState(1);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const currentCategory = MULTIMEDIA_CATEGORIES.find((c) => c.id === activeTab)!;
+  const currentCategory = MULTIMEDIA_CATEGORIES[selectedCategory];
 
+  // Get unique tags from current category
+  const availableTags = Array.from(
+    new Set(
+      currentCategory.items
+        .flatMap((item) => item.tags || [])
+        .filter(Boolean)
+    )
+  ).sort();
+
+  const hasAnyTags = currentCategory.items.some((item) => item.tags?.length);
+
+  // Filter items by selected tag
+  const displayedItems =
+    selectedTag === "Todos"
+      ? currentCategory.items
+      : currentCategory.items.filter((item) =>
+          item.tags?.includes(selectedTag)
+        );
+
+  const handleCategoryChange = (index: number) => {
+    setDirection(index > selectedCategory ? 1 : -1);
+    setSelectedCategory(index);
+    setSelectedTag("Todos");
+    setLightboxOpen(false);
+  };
+
+  const handleTagSelect = (tag: string) => {
+    setSelectedTag(tag);
+  };
+
+  const handleGalleryClick = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const handleLightboxNavigate = (newIndex: number) => {
+    setLightboxIndex(newIndex);
+  };
+
+  // Intersection observer for header
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setHeaderVisible(true); observer.disconnect(); } },
-      { threshold: 0.1 }
+      ([entry]) => {
+        setHeaderVisible(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
     );
-    if (headerRef.current) observer.observe(headerRef.current);
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
     return () => observer.disconnect();
   }, []);
 
-  const prevImage = () =>
-    setLightboxIndex((i) =>
-      i !== null ? (i - 1 + currentCategory.items.length) % currentCategory.items.length : null
-    );
-  const nextImage = () =>
-    setLightboxIndex((i) =>
-      i !== null ? (i + 1) % currentCategory.items.length : null
-    );
+  // Calculate totals
+  const totalItems = MULTIMEDIA_CATEGORIES.reduce(
+    (acc, c) => acc + c.items.length,
+    0
+  );
+  const totalCats = MULTIMEDIA_CATEGORIES.length;
 
   return (
-    <section className="py-20 bg-green-50/40 dark:bg-background transition-colors duration-300">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+    <section
+      ref={sectionRef}
+      className="py-20 px-4 md:px-8 bg-gradient-to-b from-gray-900 via-gray-900 to-black"
+      style={{ cursor: "crosshair" }}
+    >
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={headerVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-6xl mx-auto mb-12"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-2 font-mono">
+          Multimedia
+        </h2>
+        <p className="text-gray-400 text-base md:text-lg">
+          Diseño gráfico para servidores de Minecraft.
+        </p>
+        <p className="text-green-500/70 text-xs font-mono mt-2">
+          {totalItems} trabajos · {totalCats} categorías
+        </p>
+      </motion.div>
 
-          {/* Header */}
-          <div
-            ref={headerRef}
-            className="text-center mb-12 transition-all duration-700"
-            style={{ opacity: headerVisible ? 1 : 0, transform: headerVisible ? "none" : "translateY(24px)" }}
-          >
-            <div
-              className="inline-flex items-center gap-2 bg-gray-900 text-green-400 px-4 py-2 rounded-full mb-6 border border-gray-700"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+      {/* Category tabs */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={headerVisible ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="max-w-6xl mx-auto mb-8"
+      >
+        <div className="flex flex-wrap gap-3">
+          {MULTIMEDIA_CATEGORIES.map((category, index) => (
+            <motion.button
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => handleCategoryChange(index)}
+              className={`px-6 py-2.5 rounded-full font-mono text-sm font-medium transition-all duration-300 ${
+                selectedCategory === index
+                  ? "bg-green-500 text-black shadow-lg shadow-green-500/50"
+                  : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
+              }`}
             >
-              <span className="text-xs">ls ./multimedia --all</span>
-            </div>
-            <h2
-              className="text-5xl md:text-6xl font-black text-gray-900 dark:text-foreground mb-4"
-              style={{ fontFamily: "'Syne', sans-serif" }}
-            >
-              Mis{" "}
-              <span
-                className="text-transparent"
-                style={{
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  backgroundImage: "linear-gradient(135deg, #16a34a, #22c55e, #4ade80)",
-                  backgroundSize: "200% auto",
-                  animation: "shimmer 3s linear infinite",
-                }}
-              >
-                Trabajos
-              </span>
-            </h2>
-            <p className="text-gray-500 dark:text-muted-foreground">
-              Diseño gráfico para servidores de Minecraft.
-            </p>
-          </div>
-
-          {/* Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {MULTIMEDIA_CATEGORIES.map((cat) => {
-              const isActive = activeTab === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    const oldIdx = MULTIMEDIA_CATEGORIES.findIndex((c) => c.id === activeTab);
-                    const newIdx = MULTIMEDIA_CATEGORIES.findIndex((c) => c.id === cat.id);
-                    setDirection(newIdx > oldIdx ? 1 : -1);
-                    setActiveTab(cat.id);
-                  }}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm transition-all duration-200 border ${
-                    isActive
-                      ? "bg-green-500 text-white border-green-500 shadow-lg shadow-green-500/30 font-bold"
-                      : "bg-white dark:bg-card text-green-700 dark:text-green-400 border-green-200 dark:border-border hover:border-green-400 dark:hover:border-green-600"
-                  }`}
-                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                >
-                  <span>{cat.label}</span>
-                  {cat.items.length > 0 && (
-                    <span
-                      className={`text-xs px-1.5 py-0.5 rounded-md ${
-                        isActive
-                          ? "bg-white/20 text-white"
-                          : "bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 border border-green-200 dark:border-green-800"
-                      }`}
-                    >
-                      {cat.items.length}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Gallery */}
-          <div className="overflow-hidden">
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={activeTab}
-              custom={direction}
-              variants={{
-                enter: (d: number) => ({ opacity: 0, x: d * 40, filter: "blur(4px)" }),
-                center: { opacity: 1, x: 0, filter: "blur(0px)" },
-                exit: (d: number) => ({ opacity: 0, x: d * -40, filter: "blur(4px)" }),
-              }}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            >
-              {currentCategory.items.length === 0 ? (
-                <EmptyState category={currentCategory} />
-              ) : (
-                <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-3">
-                  {currentCategory.items.map((item, i) => (
-                    <GalleryCard
-                      key={item.file}
-                      item={item}
-                      folder={currentCategory.folder}
-                      index={i}
-                      onOpen={setLightboxIndex}
-                    />
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-          </div>
-
+              {category.name}
+            </motion.button>
+          ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* Lightbox */}
+      {/* Tag filter chips */}
       <AnimatePresence>
-        {lightboxIndex !== null && (
-          <Lightbox
-            items={currentCategory.items}
-            folder={currentCategory.folder}
-            index={lightboxIndex}
-            onClose={() => setLightboxIndex(null)}
-            onPrev={prevImage}
-            onNext={nextImage}
-          />
+        {hasAnyTags && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="max-w-6xl mx-auto mb-6"
+          >
+            <div className="flex flex-wrap gap-2">
+              {/* "Todos" chip */}
+              <motion.button
+                layout
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleTagSelect("Todos")}
+                className={`font-mono text-xs px-3 py-1 rounded-full transition-all duration-200 ${
+                  selectedTag === "Todos"
+                    ? "bg-green-500 text-white"
+                    : "border border-green-500/50 text-green-500/70 hover:border-green-500 hover:text-green-500"
+                }`}
+              >
+                Todos
+              </motion.button>
+
+              {/* Individual tag chips */}
+              <AnimatePresence mode="popLayout">
+                {availableTags.map((tag) => (
+                  <motion.button
+                    key={tag}
+                    layout
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleTagSelect(tag)}
+                    className={`font-mono text-xs px-3 py-1 rounded-full transition-all duration-200 ${
+                      selectedTag === tag
+                        ? "bg-green-500 text-white shadow-lg shadow-green-500/30"
+                        : "border border-green-500/50 text-green-500/70 hover:border-green-500 hover:text-green-500"
+                    }`}
+                  >
+                    {tag}
+                  </motion.button>
+                ))}
+              </AnimatePresence>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Gallery grid */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="max-w-6xl mx-auto"
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${selectedCategory}-${selectedTag}`}
+            initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+            exit={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
+            transition={{
+              duration: 0.35,
+              ease: [0.4, 0, 0.2, 1],
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {displayedItems.length > 0 ? (
+              displayedItems.map((item, index) => (
+                <GalleryCard
+                  key={`${item.file}-${index}`}
+                  item={item}
+                  index={index}
+                  onClick={() => handleGalleryClick(index)}
+                />
+              ))
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="col-span-full text-center py-12"
+              >
+                <p className="text-gray-400 text-sm font-mono">
+                  No hay elementos con la etiqueta "{selectedTag}"
+                </p>
+              </motion.div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+      </motion.div>
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <Lightbox
+          items={currentCategory.items}
+          initialIndex={lightboxIndex}
+          onClose={() => setLightboxOpen(false)}
+          onNavigate={handleLightboxNavigate}
+        />
+      )}
     </section>
   );
 }
