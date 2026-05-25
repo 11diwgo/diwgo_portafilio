@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Eye, ChevronRight, Zap, Server } from "lucide-react";
+import { ChevronRight, Zap, Server } from "lucide-react";
 import { motion } from "framer-motion";
 import spyglassIcon from "@/assets/spyglass.png";
 import anvilIcon from "@/assets/anvil.png";
@@ -40,28 +40,10 @@ const FLOATING_SNIPPETS = [
 ];
 
 export function Hero({ onNavigate }: HeroProps) {
-  const [visitas, setVisitas] = useState<number | null>(null);
   const [visibleLines, setVisible] = useState(0);
   const [titleVisible, setTitle] = useState(false);
   const cfg = { label: "Online", color: "#22c55e", dot: "bg-green-400", pulse: true };
 
-  // ── Contador de visitas real (no cuenta F5) ──────────────────────────
-  useEffect(() => {
-    const SESSION_KEY = "diwgo_counted";
-    const alreadyCounted = sessionStorage.getItem(SESSION_KEY);
-
-    const endpoint = alreadyCounted
-      ? "https://api.counterapi.dev/v1/portfolio-mc-staff-pro/visitas"       // solo leer
-      : "https://api.counterapi.dev/v1/portfolio-mc-staff-pro/visitas/up";   // leer + sumar 1
-
-    fetch(endpoint)
-      .then((r) => r.json())
-      .then((d) => {
-        setVisitas(d.count ?? 0);
-        if (!alreadyCounted) sessionStorage.setItem(SESSION_KEY, "1");
-      })
-      .catch(() => setVisitas(0));
-  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setTitle(true), 100);
@@ -130,19 +112,6 @@ export function Hero({ onNavigate }: HeroProps) {
         </motion.div>
       ))}
 
-      {/* Visits counter */}
-      <motion.div
-        className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-white/80 dark:bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-green-200 dark:border-green-800 shadow-sm"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        whileHover={{ scale: 1.05 }}
-      >
-        <Eye className="w-3.5 h-3.5 text-green-500" />
-        <span className="text-green-700 dark:text-green-400 text-xs font-mono font-medium">
-          {visitas === null ? "..." : `${visitas.toLocaleString()} visitas`}
-        </span>
-      </motion.div>
 
       {/* Main content */}
       <div className="container mx-auto px-4 py-16 relative z-10">
