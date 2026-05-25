@@ -132,88 +132,99 @@ const Lightbox: React.FC<LightboxProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
         onClick={onClose}
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
-        }}
       >
         {/* Botón cerrar */}
         <motion.button
-          onClick={(e) => {
-            e.stopPropagation();
-            onClose();
-          }}
-          className="absolute top-4 right-4 p-2 rounded-full bg-black/50 hover:bg-black/75 text-white transition-colors z-10"
+          onClick={(e) => { e.stopPropagation(); onClose(); }}
+          className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
           whileHover={{ scale: 1.1 }}
         >
-          <X size={24} />
+          <X size={20} />
         </motion.button>
 
-        {/* Contenedor imagen */}
+        {/* Contenedor principal */}
         <motion.div
           onClick={(e) => e.stopPropagation()}
-          className="relative max-w-3xl max-h-[80vh] w-full mx-4"
-          initial={{ scale: 0.9, opacity: 0 }}
+          className="flex flex-col md:flex-row w-full max-w-5xl max-h-[90vh] rounded-xl overflow-hidden bg-card border border-border"
+          initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          transition={{ duration: 0.2 }}
         >
-          <img
-            src={`/multimedia/${folder}/${currentItem.file}`}
-            alt={currentItem.caption}
-            className="w-full h-full object-contain rounded-lg"
-          />
+          {/* Imagen */}
+          <div className="flex-1 flex items-center justify-center bg-black min-h-[300px] relative">
+            <img
+              key={currentItem.file}
+              src={`/multimedia/${folder}/${currentItem.file}`}
+              alt={currentItem.caption}
+              className="max-w-full max-h-[70vh] object-contain"
+            />
 
-          {/* Navegación lateral */}
-          {currentIndex > 0 && (
-            <motion.button
-              onClick={(e) => {
-                e.stopPropagation();
-                onNavigate(currentIndex - 1);
-              }}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-14 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-              whileHover={{ scale: 1.1 }}
-            >
-              <ChevronLeft size={28} />
-            </motion.button>
-          )}
+            {/* Flechas sobre la imagen */}
+            {currentIndex > 0 && (
+              <motion.button
+                onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex - 1); }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/80 text-white transition-colors"
+                whileHover={{ scale: 1.1 }}
+              >
+                <ChevronLeft size={24} />
+              </motion.button>
+            )}
+            {currentIndex < items.length - 1 && (
+              <motion.button
+                onClick={(e) => { e.stopPropagation(); onNavigate(currentIndex + 1); }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 hover:bg-black/80 text-white transition-colors"
+                whileHover={{ scale: 1.1 }}
+              >
+                <ChevronRight size={24} />
+              </motion.button>
+            )}
+          </div>
 
-          {currentIndex < items.length - 1 && (
-            <motion.button
-              onClick={(e) => {
-                e.stopPropagation();
-                onNavigate(currentIndex + 1);
-              }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-14 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-              whileHover={{ scale: 1.1 }}
-            >
-              <ChevronRight size={28} />
-            </motion.button>
-          )}
-
-          {/* Info */}
+          {/* Panel de info */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-4 rounded-b-lg"
+            key={currentItem.file}
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.2 }}
+            className="w-full md:w-64 flex-shrink-0 flex flex-col gap-4 p-6 border-t md:border-t-0 md:border-l border-border"
           >
-            <p className="text-white text-sm font-medium mb-1">
-              {currentItem.caption}
-            </p>
+            <div>
+              <p className="text-[10px] font-mono text-green-500/60 mb-1">DESCRIPCIÓN</p>
+              <p className="text-foreground text-sm font-medium leading-relaxed">
+                {currentItem.caption || "Sin descripción"}
+              </p>
+            </div>
+
             {currentItem.plugin && (
-              <p className="text-green-400/70 text-xs font-mono">
-                Plugin: {currentItem.plugin}
-              </p>
+              <div>
+                <p className="text-[10px] font-mono text-green-500/60 mb-1">PLUGIN</p>
+                <span className="inline-block text-xs font-mono bg-green-500/10 text-green-400 border border-green-500/20 px-2 py-1 rounded">
+                  {currentItem.plugin}
+                </span>
+              </div>
             )}
+
             {currentItem.tags && currentItem.tags.length > 0 && (
-              <p className="text-green-400/70 text-xs font-mono">
-                Tags: {currentItem.tags.join(", ")}
-              </p>
+              <div>
+                <p className="text-[10px] font-mono text-green-500/60 mb-2">TAGS</p>
+                <div className="flex flex-wrap gap-1">
+                  {currentItem.tags.map((tag) => (
+                    <span key={tag} className="text-xs font-mono bg-accent text-accent-foreground border border-border px-2 py-0.5 rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             )}
-            <p className="text-white/50 text-xs mt-2">
-              {currentIndex + 1} / {items.length} • Usa las flechas para navegar
-            </p>
+
+            <div className="mt-auto pt-4 border-t border-border">
+              <p className="text-muted-foreground text-xs font-mono">
+                {currentIndex + 1} / {items.length}
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>
@@ -300,8 +311,8 @@ export const Multimedia: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-white dark:bg-gray-950 py-20 px-4"
-      style={{ cursor: "crosshair" }}
+      className="min-h-screen bg-background py-20 px-4"
+
     >
       <div className="max-w-6xl mx-auto">
         {/* Header con animación de entrada */}
@@ -311,11 +322,11 @@ export const Multimedia: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Multimedia
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">
-            Diseño gráfico para servidores de Minecraft.
+          <p className="text-lg text-muted-foreground mb-2">
+            Configuración visual para servidores de Minecraft.
           </p>
           <p className="font-mono text-xs text-green-500/70">
             {totalItems} trabajos · {totalCategories} categorías
@@ -336,7 +347,7 @@ export const Multimedia: React.FC = () => {
               className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
                 activeCategoryIndex === index
                   ? "bg-green-500 text-white shadow-lg shadow-green-500/30"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                  : "bg-card text-foreground border border-border hover:border-green-500/50 hover:bg-accent"
               }`}
             >
               {category.name}
@@ -419,7 +430,7 @@ export const Multimedia: React.FC = () => {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-muted-foreground">
               No hay elementos con el tag "{activeTag}"
             </p>
           </motion.div>
