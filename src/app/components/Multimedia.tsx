@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, ChevronUp, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { MULTIMEDIA_CATEGORIES, type MediaItem } from "./multimedia-config";
 
 interface GalleryCardProps {
@@ -65,9 +65,7 @@ const GalleryCard = ({ item, index, onClick }: GalleryCardProps) => {
       </motion.div>
 
       {/* Skeleton loader */}
-      <div
-        className="relative w-full h-40 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden"
-      >
+      <div className="relative w-full h-40 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-hidden">
         {!loaded && (
           <motion.div
             animate={{ opacity: [0.5, 1, 0.5] }}
@@ -127,15 +125,17 @@ const Lightbox = ({
 }: LightboxProps) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  const handlePrevious = useCallback(() => {
-    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
-    onNavigate(currentIndex === 0 ? items.length - 1 : currentIndex - 1);
-  }, [currentIndex, items.length, onNavigate]);
+  const handlePrevious = () => {
+    const newIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+    onNavigate(newIndex);
+  };
 
-  const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
-    onNavigate(currentIndex === items.length - 1 ? 0 : currentIndex + 1);
-  }, [currentIndex, items.length, onNavigate]);
+  const handleNext = () => {
+    const newIndex = currentIndex === items.length - 1 ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+    onNavigate(newIndex);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -145,7 +145,7 @@ const Lightbox = ({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handlePrevious, handleNext, onClose]);
+  }, [currentIndex, items.length]);
 
   const currentItem = items[currentIndex];
   const fileExtension =
@@ -373,7 +373,7 @@ export default function Multimedia() {
                   : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
               }`}
             >
-              {category.name}
+              {category.label}
             </motion.button>
           ))}
         </div>
