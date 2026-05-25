@@ -1,70 +1,54 @@
-/**
- * CONFIGURACIÓN DE GALERÍA MULTIMEDIA
- * ─────────────────────────────────────────────────────────────────
- * Pon tus imágenes en:  public/multimedia/<categoria>/
- * Luego añade el nombre del archivo aquí abajo.
- *
- * La ruta base es automática, solo necesitas el nombre del archivo.
- * Ejemplo: "mi-holograma.png" → public/multimedia/hologramas/mi-holograma.png
- */
-
 export interface MediaItem {
-  file: string;       // nombre del archivo (ej: "holo1.png")
-  caption?: string;   // descripción opcional
-  tags?: string[];    // etiquetas para filtrar (ej: ["lobby", "boxpvp"])
+  file: string;
+  caption?: string;
+  tags?: string[];
+  plugin?: string;
 }
 
-export interface MediaCategory {
-  id: string;
-  label: string;
+export interface MultimediaCategory {
+  name: string;
+  icon: string;
   items: MediaItem[];
 }
 
-export const MULTIMEDIA_CATEGORIES: MediaCategory[] = [
+export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
   {
-    id: "hologramas",
-    label: "Hologramas",
+    name: "Hologramas",
+    icon: "Wand2",
     items: [
-      { file: "holo1.png", caption: "Holograma menú recompensas", tags: ["lobby"] },
-      { file: "holo2.png", caption: "Holograma de bienvenida", tags: ["lobby"] },
-      { file: "holo3.png", caption: "Holograma de información de mina", tags: ["survival"] },
-      { file: "holo4.png", caption: "Holograma de crates", tags: ["crates"] },
-      { file: "holo5.png", caption: "Holograma de información de warp", tags: ["lobby"] },
-      { file: "holo6.png", caption: "Holograma de minas (boxpvp)", tags: ["boxpvp"] },
-      { file: "holo7.png", caption: "Holograma de estdística del servidor (TOP)", tags: ["lobby"] },
-      { file: "holo8.png", caption: "Holograma de información de PvP", tags: ["pvp"] },
-      { file: "holo9.png", caption: "Holograma de información de Room (BoxPvP)", tags: ["boxpvp"] },
-      { file: "holo10.png", caption: "Holograma de información de modalidad", tags: ["lobby"] },
-      { file: "holo11.png", caption: "Holograma de Discord", tags: ["discord"] },
-      { file: "holo12.png", caption: "Holograma de Tienda", tags: ["tienda"] },
-      { file: "holo13.png", caption: "Holograma de bienvenida", tags: ["lobby"] },
+      { file: "holograma1.png", caption: "Holograma Lobby Principal", tags: ["lobby"], plugin: "FakePlayerAPI" },
+      { file: "holograma2.png", caption: "Animación NPC", tags: ["survival", "lobby"], plugin: "Citizens" },
+      { file: "holograma3.png", caption: "Efecto Glow Box", tags: ["boxpvp", "pvp"], plugin: "ParticleLib" },
+      { file: "holograma4.gif", caption: "Portal Dinámico", tags: ["survival", "crates"], plugin: "WorldEdit" },
+      { file: "holograma5.png", caption: "Logo Tienda", tags: ["tienda", "lobby"], plugin: "DeluxeMenus" },
+      { file: "holograma6.png", caption: "Tabla de Líderes", tags: ["discord", "boxpvp"], plugin: "PlaceholderAPI" },
     ],
   },
   {
-    id: "menus",
-    label: "Menús",
+    name: "Menús",
+    icon: "Menu",
     items: [
-      { file: "menu1.png", caption: "Menú de modalidades", tags: ["lobby"] },
-      { file: "menu2.gif", caption: "Menú de warps del servidor", tags: ["warps"] },
-      { file: "menu3.gif", caption: "Menú principal de una modalidad", tags: ["survival"] },
-      { file: "menu4.gif", caption: "Menú de kits", tags: ["kits"] },
-      { file: "menu5.gif", caption: "Menú de protecciones (Survival)", tags: ["survival"] },
+      { file: "menu1.png", caption: "Menú Principal Survival", tags: ["survival", "kits"], plugin: "DeluxeMenus" },
+      { file: "menu2.png", caption: "Menú Warps", tags: ["warps", "lobby"], plugin: "DeluxeMenus" },
+      { file: "menu3.png", caption: "Tienda de Items", tags: ["survival", "warps"], plugin: "QuickShop" },
+      { file: "menu4.gif", caption: "Selector de Clase", tags: ["kits", "pvp"], plugin: "DeluxeMenus" },
     ],
   },
   {
-    id: "scoreboards",
-    label: "Tabs / Scoreboards",
+    name: "Scoreboards",
+    icon: "List",
     items: [
-      { file: "tab1.png", caption: "Tab de lobby", tags: ["lobby"] },
-      { file: "sc1.png", caption: "Scoreboard de lobby", tags: ["lobby"] },
+      { file: "scoreboard1.png", caption: "Scoreboard Lobby", tags: ["lobby"], plugin: "FeatherBoard" },
+      { file: "scoreboard2.png", caption: "Stats PVP", tags: ["boxpvp", "pvp"], plugin: "Placeholder API" },
     ],
   },
   {
-    id: "otros",
-    label: "Otros",
+    name: "Otros",
+    icon: "Image",
     items: [
-      { file: "otros1.png", caption: "Lore de BoxPvP", tags: ["boxpvp"] },
-      { file: "otros2.png", caption: "Mensajes de chat automáticos", tags: ["chat"] },
+      { file: "otros1.png", caption: "Lore BoxPvP", tags: ["boxpvp"], plugin: "CMI" },
+      { file: "otros2.png", caption: "Chat Custom", tags: ["chat"], plugin: "LiteBans" },
+      { file: "otros3.gif", caption: "Animación Login", tags: ["survival"], plugin: "LoginAnnouncer" },
     ],
   },
 ];
