@@ -54,6 +54,7 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
     items: [
       { file: "tab1.png", caption: "Tab de lobby",        tags: ["lobby"], plugin: "TAB"         },
       { file: "sc1.png",  caption: "Scoreboard de lobby", tags: ["lobby"], plugin: "TAB" },
+      { file: "sc2.png",  caption: "Scoreboard de survival", tags: ["survival"], plugin: "TAB" },
     ],
   },
 
@@ -64,6 +65,7 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
     items: [
       { file: "otros1.png", caption: "Lore de BoxPvP",              tags: ["boxpvp"], plugin: "ItemEdit" },
       { file: "otros2.png", caption: "Mensajes de chat automáticos", tags: ["global"],   plugin: "AutomaticBroadcast"     },
+      { file: "otros3.png", caption: "MOTD de servidor", tags: ["global"],   plugin: "Sistemas propios"     },
     ],
   },
 ];
