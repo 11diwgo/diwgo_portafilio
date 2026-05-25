@@ -11,40 +11,9 @@ interface HeroProps {
   onNavigate?: (section: "inicio" | "experiencia" | "conocimientos" | "testimonios" | "contacto") => void;
 }
 
-const DISCORD_USER_ID = "1007338838911361164";
 
-const STATUS_CONFIG = {
-  online:  { label: "Online",       color: "#22c55e", dot: "bg-green-400",  pulse: true  },
-  idle:    { label: "Ausente",      color: "#f59e0b", dot: "bg-yellow-400", pulse: false },
-  dnd:     { label: "No molestar",  color: "#ef4444", dot: "bg-red-500",    pulse: false },
-  offline: { label: "Desconectado", color: "#6b7280", dot: "bg-gray-400",   pulse: false },
-};
 
-function useDiscordStatus() {
-  const [status, setStatus] = useState<"online" | "idle" | "dnd" | "offline">("offline");
-  const [activity, setActivity] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchStatus = () => {
-      fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`)
-        .then((r) => r.json())
-        .then((d) => {
-          if (d.success) {
-            setStatus(d.data.discord_status ?? "offline");
-            const act = d.data.activities?.find((a: { type: number; name: string }) => a.type === 0);
-            setActivity(act ? act.name : null);
-          }
-        })
-        .catch(() => setStatus("online"));
-    };
-
-    fetchStatus();
-    const interval = setInterval(fetchStatus, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return { status, activity };
-}
 
 const CONSOLE_LINES = [
   { time: "12:03:01", thread: "Server thread", level: "INFO", msg: "Starting Minecraft server..." },
@@ -74,8 +43,7 @@ export function Hero({ onNavigate }: HeroProps) {
   const [visitas, setVisitas] = useState<number | null>(null);
   const [visibleLines, setVisible] = useState(0);
   const [titleVisible, setTitle] = useState(false);
-  const { status, activity } = useDiscordStatus();
-  const cfg = STATUS_CONFIG[status];
+  const cfg = { label: "Online", color: "#22c55e", dot: "bg-green-400", pulse: true };
 
   // ── Contador de visitas real (no cuenta F5) ──────────────────────────
   useEffect(() => {
@@ -203,11 +171,6 @@ export function Hero({ onNavigate }: HeroProps) {
                 <span className="text-xs font-mono font-semibold" style={{ color: cfg.color }}>
                   Discord: {cfg.label}
                 </span>
-                {activity && (
-                  <span className="text-xs font-mono text-gray-400 dark:text-gray-500 border-l border-gray-200 dark:border-gray-700 pl-2">
-                    {activity}
-                  </span>
-                )}
               </motion.div>
 
               {/* Title */}
