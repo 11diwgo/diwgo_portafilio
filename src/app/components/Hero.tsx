@@ -31,7 +31,7 @@ const levelBg: Record<string, string> = {
 };
 
 const FLOATING_SNIPPETS = [
-  { code: "/lp group owner add diwgo_",                                  x: "4%",  y: "18%", delay: 0   },
+  { code: "/lp user diwgo_ parent add owner",                                  x: "4%",  y: "18%", delay: 0   },
   { code: "/dm reload warps",                                             x: "72%", y: "14%", delay: 0.8 },
   { code: "[Staff] ticket #47 cerrado",                                   x: "78%", y: "62%", delay: 1.5 },
   { code: "server.properties saved ✓",                                    x: "60%", y: "78%", delay: 0.4 },
