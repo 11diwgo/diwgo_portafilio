@@ -109,12 +109,6 @@ function AboutMe() {
       desc: "Cada día aprendo algo nuevo. No me conformo con lo que sé. Siempre hay algo por descubrir.",
     },
     {
-      icon: <Users className="w-4 h-4" />,
-      color: "text-rose-500 bg-rose-50 dark:bg-rose-900/20 border-rose-200 dark:border-rose-800",
-      title: "Comunicativo",
-      desc: "Explico bien mis ideas. Escucho y entiendo. El trabajo en equipo es lo mío.",
-    },
-    {
       icon: <MessageSquare className="w-4 h-4" />,
       color: "text-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 border-indigo-200 dark:border-indigo-800",
       title: "Dedicado",
