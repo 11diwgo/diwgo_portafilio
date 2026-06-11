@@ -33,6 +33,7 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
       { file: "holo13.png", caption: "Holograma de bienvenida",                       tags: ["survival"],   plugin: "FancyHolograms" },
       { file: "holo14.png", caption: "Holograma de información de NPC",               tags: ["fullpvp"],   plugin: "Información Privada" },
       { file: "holo15.png", caption: "Holograma de información de mina",              tags: ["fullpvp"],   plugin: "Información Privada" },
+      { file: "holo16.png", caption: "Holograma de información de NPC",              tags: ["fullpvp"],   plugin: "Información Privada" },
     ],
   },
 
