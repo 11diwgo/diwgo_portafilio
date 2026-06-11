@@ -29,8 +29,10 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
       { file: "holo9.png",  caption: "Holograma de información de Room",              tags: ["boxpvp"], plugin: "FancyHolograms" },
       { file: "holo10.png", caption: "Holograma de información de modalidad",         tags: ["lobby"], plugin: "FancyHolograms" },
       { file: "holo11.png", caption: "Holograma de Discord",                          tags: ["lobby", "global"], plugin: "FancyHolograms" },
-      { file: "holo12.png", caption: "Holograma de Tienda",                           tags: ["lobby" ,"global"],  plugin: "FancyHolograms" },
+      { file: "holo12.png", caption: "Holograma de Tienda",                           tags: ["lobby" ,"global"],  plugin: "Información Privada" },
       { file: "holo13.png", caption: "Holograma de bienvenida",                       tags: ["survival"],   plugin: "FancyHolograms" },
+      { file: "holo14.png", caption: "Holograma de información de NPC",               tags: ["fullpvp"],   plugin: "Información Privada" },
+      { file: "holo15.png", caption: "Holograma de información de mina",              tags: ["fullpvp"],   plugin: "Información Privada" },
     ],
   },
 
@@ -63,9 +65,9 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
     icon: "Image",
     folder: "otros",
     items: [
-      { file: "otros1.png", caption: "Lore de BoxPvP",              tags: ["boxpvp"], plugin: "ItemEdit" },
-      { file: "otros2.png", caption: "Mensajes de chat automáticos", tags: ["global"],   plugin: "AutomaticBroadcast"     },
-      { file: "otros3.png", caption: "MOTD de servidor", tags: ["global"],   plugin: "Sistemas propios"     },
+      { file: "otros1.png", caption: "Lore de BoxPvP",                                    tags: ["boxpvp"],   plugin: "ItemEdit" },
+      { file: "otros2.png", caption: "Mensajes de chat automáticos",                      tags: ["global"],   plugin: "AutomaticBroadcast"     },
+      { file: "otros3.png", caption: "MOTD de servidor",                                  tags: ["global"], plugin: "Sistemas propios"     },
     ],
   },
 ];
