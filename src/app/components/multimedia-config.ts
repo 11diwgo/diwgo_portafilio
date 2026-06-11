@@ -47,6 +47,7 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
       { file: "menu3.gif", caption: "Menú principal de una modalidad", tags: ["survival"], plugin: "DeluxeMenus" },
       { file: "menu4.gif", caption: "Menú de kits",                    tags: ["boxpvp", "survival"],     plugin: "PlayerKits2" },
       { file: "menu5.gif", caption: "Menú de protecciones", tags: ["survival"], plugin: "DeluxeMenus" },
+      { file: "menu5.gif", caption: "Menú de tags", tags: ["fullpvp", "survival", "boxpvp"], plugin: "Información Privada" },
     ],
   },
 
