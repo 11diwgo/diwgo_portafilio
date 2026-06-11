@@ -34,6 +34,7 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
       { file: "holo14.png", caption: "Holograma de información de NPC",               tags: ["fullpvp"],   plugin: "Información Privada" },
       { file: "holo15.png", caption: "Holograma de información de mina",              tags: ["fullpvp"],   plugin: "Información Privada" },
       { file: "holo16.png", caption: "Holograma de información de NPC",              tags: ["fullpvp"],   plugin: "Información Privada" },
+      { file: "holo16.png", caption: "Holograma de información (AFK ZONE)",              tags: ["fullpvp", "survival", "boxpvp"],   plugin: "Información Privada" },
     ],
   },
 
@@ -61,6 +62,7 @@ export const MULTIMEDIA_CATEGORIES: MultimediaCategory[] = [
       { file: "sc2.png",  caption: "Scoreboard de survival", tags: ["survival"], plugin: "TAB" },
     ],
   },
+
 
   {
     name: "Otros",
