@@ -20,9 +20,10 @@ export function ScrollProgressBar() {
   return (
     <div className="fixed top-0 left-0 w-full h-1 z-[9999] bg-transparent">
       <div
-        className="h-full bg-primary transition-all duration-100"
+        className="h-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 transition-all duration-100"
         style={{
           width: `${scrollProgress}%`,
+          boxShadow: "0 0 20px rgba(34, 197, 94, 0.8)",
         }}
       />
     </div>
