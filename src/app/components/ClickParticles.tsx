@@ -12,7 +12,7 @@ interface Particle {
 
 export function ClickParticles() {
   const [particles, setParticles] = useState<Particle[]>([]);
-  const colors = ["#e2a33c", "#b9631b", "#ece4d3", "#a89c88"];
+  const colors = ["#22c55e", "#4ade80", "#86efac", "#16a34a", "#15803d"];
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
